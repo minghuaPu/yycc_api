@@ -15,7 +15,7 @@ class Smalltalk extends \think\Controller
 			->field('s.id,s.title,s.smalltalk_img,s.join_num,s.create_time,v.real_name,v.identity,v.head_img,sc.cate_name')
 			->join('vip v','s.vip_id = v.id')
 			->join('smalltalk_cate sc','s.smalltalk_cate_id = sc.id')
-			->order('s.id desc')
+			->order('s.create_time desc')
 			->paginate(8);
 		//print_r($list);
 		return json($list);
@@ -29,7 +29,7 @@ class Smalltalk extends \think\Controller
 			->field('s.id,s.title,s.smalltalk_img,s.join_num,s.create_time,v.real_name,v.identity,v.head_img')
 			->join('vip v','s.vip_id = v.id')
 			->where("smalltalk_cate_id=".$cat_id)
-			->order('s.id desc')
+			->order('s.create_time desc')
 			->paginate(5);
 			return json($list);
 		}else if($type == "vip"){

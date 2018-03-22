@@ -1,19 +1,18 @@
 <?php
 namespace app\api\controller;
-use \think\Session;
 
 class Kecheng extends \think\Controller
 {
+	
 	function index()
 	{
-		//小讲表
-		/*$vip_id = Session::get('vip_id')?Session::get('vip_id'):'';
-		$where = '';*/
-		$where = "";
+
+		$where= "";
 		$cateId = input("cateId");
 		if ($cateId>0) {
 			$where = "smalltalk_cate_id=$cateId";
 		}
+
 		$list = db("smalltalk")
 			->alias('s')
 			->where($where)
@@ -22,18 +21,14 @@ class Kecheng extends \think\Controller
 			->join('smalltalk_cate sc','s.smalltalk_cate_id = sc.id')
 			->order('s.id desc')
 			->paginate(4);
-		//print_r($list);
 		return json($list);
 	}
-	 
-	public function getKeCate()
-	{
-	 	$cate_list = db('smalltalk_cate')->limit(4)->select();
+	function getKeCate(){
+		$cate_list = db('smalltalk_cate')->select();
 
 		return json($cate_list);
-	 	
-	} 
+	}
 }
-
-
 ?>
+
+

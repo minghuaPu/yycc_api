@@ -17,12 +17,11 @@ class SmalltalkContent extends \think\Controller
 	{
 		$smalltalk_content_id=input('id');
 		$list = db("smalltalk_content")
-			->field('id,title,smalltalk_id,ke_content')
+			->field('id,title,smalltalk_id,kc_content')
 			->where("id=$smalltalk_content_id")
 			->select();
-
-		if (!empty($list)) {
-			$list[0]['ke_content'] = str_replace("/Public", "http://localhost/Public", $list[0]['ke_content'] );
+		if(!empty($list)){
+			$list[0]['kc_content']=str_replace('/Public', 'http://localhost/Public', $list[0]['kc_content']);
 		}
 		return json($list);
 	}

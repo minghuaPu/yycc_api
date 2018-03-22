@@ -6,8 +6,11 @@ namespace app\api\controller;
 */
 class Daka extends \think\Controller
 {
+	//保存打卡信息
 	public function index()
 	{
+		// $question_id=input('question_id');
+
 		$uid=input('uid');
 		$_input=input('input');
 		$textarea3=input('textarea3');
@@ -19,7 +22,8 @@ class Daka extends \think\Controller
 					"uid"=>$uid,
 					"input"=>$_input,
 					"textarea3"=>$textarea3,
-					"dakaTime"=>time()
+					"dakaTime"=>time(),
+					// "question_id"=>$question_id
 				]);
 			return json([
 				"status"=>1,
@@ -34,44 +38,100 @@ class Daka extends \think\Controller
 		
 	}
 
+
+	//个人所有打卡记录  我的打卡(rili)
 	public function hasData()
 	{
 		# code...
 		$uid=input('uid');
-		return json(db('daka')->where("uid =$uid")->order("id desc")->select());
+		$hasdata=db('daka')
+				->where("uid =$uid")
+				->order("id desc")
+				->select();
+		return json($hasdata);
 	}
+
+
+
+	//5条该主题的记录
 	public function allData()
 	{
-		$allData=db('daka')->order("id desc")->select();
 
+		$theme_id= input('theme_id');
+		$where="";
+		$p= (input('p')-1)*5;
+		if($theme_id){
+			$where=" theme_id = $theme_id";
+		}
+		$allData=db('daka')
+				 ->alias('d')
+				 ->where($where)
+				 ->field('d.id,us.user_name,d.dakaTime,d.textarea3,us.head_img')
+				 ->join('user us','us.id = d.uid')
+				 ->order("d.dakaTime desc")
+				 ->limit("$p,5")
+				 ->select();
 
+				 // print_r($allData);
 
-		
 		return json(
 			["allData"=>$allData
 		]);
-		
-
 	}
+
+
+
+	//该主题排行榜     缺主题id
 	public function toplist()
 	{
-		$allid=db('daka')->group("uid")->count("uid");
-		$toplist =db('daka')->field('uid,count(id) c')->group("uid")->select();
+		$allid=db('daka')
+				->group("uid")
+				->count("uid");
+		$toplist =db('daka')
+				  ->alias('d')
+				  ->field('u.user_name,u.head_img,d.uid,count(d.id) c')
+				  ->join('user u','u.id = d.uid','left')
+				  ->group("d.uid")
+				  ->order('c desc')
+				  ->select();
+		// print_r(json([
+		// 	"allid"=>$allid,
+		// 	"toplist"=>$toplist]));
 		
 		return json([
 			"allid"=>$allid,
 			"toplist"=>$toplist]);
 		// SELECT uid ,count(id)FROM `fd_daka` group by uid;
 	}
+
+
+	//该用户打卡有多少条记录
 	public function has()
 	{
 		$uid=input('uid');
-		$_count=db('daka') ->where("uid ='$uid'")->count();
-		$daka_info= db('daka') ->where("uid ='$uid'")->select();
-		return json([
-			"daka_count"=>$_count,
-			"daka_info"=>$daka_info
-		]);
+		// $_count=db('daka')
+		// 		->where("uid ='$uid'")
+		// 		->count();
+		$daka_info= db('daka')
+					->alias('d')
+					->field('u.user_name,u.head_img,count(d.uid) num')
+					->join('user u','u.id = d.uid','left')
+					->where("d.uid ='$uid'")
+					->select();
+		return json($daka_info);
+	}
+
+
+	public function themelist()
+	{
+		$id=input('id');
+		// SELECT  uid FROM `fd_daka`  where theme_id =1 group by uid;
+		$themelist=db("daka")
+					->field('uid')
+					->where("theme_id = '$id'")
+					->group('uid')
+					->count();
+		return json($themelist);
 	}
 }
 
