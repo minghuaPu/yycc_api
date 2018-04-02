@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:95:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\smalltalk\edit_content.html";i:1522639631;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\header.html";i:1522205384;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\footer.html";i:1510056767;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:97:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\smalltalk\add_edit_audio.html";i:1522640964;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\header.html";i:1522205384;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\footer.html";i:1510056767;}*/ ?>
 <!DOCTYPE html>
 <!--[if IE 8]>
 <html lang="en" class="ie8 no-js">
@@ -334,32 +334,33 @@ table td{
                             <!-- BEGIN PAGE HEADER--> 
 
 <div class="self-container mt-3">
-    <h3>编辑课程目录</h3>
-     <form action="<?php echo url('update_content'); ?>" method="post" enctype="multipart/form-data">
+    <h3>小节添加/更新</h3>
+     <form action="<?php echo url('add_edit_audio'); ?>" method="post" enctype="multipart/form-data">
       <div class="form-group">
-            <label >目录名称</label>
+            <label >小节名称</label>
             <div  >
-                <input type="text" class="form-control" value="<?php echo $smalltalk_content['title']; ?>" name="title">
+                <input type="text" class="form-control" name="audio_name" value="<?php echo $info['audio_name']; ?>">
             </div>
         </div>
         
           <div class="form-group">
-            <label >简介</label>
+            <label >内容</label>
             <div  >
-              <textarea name="ke_content" id="baidu_edit" style="height: 580px"><?php echo $smalltalk_content['ke_content']; ?></textarea>
+              <input type="file" name="audio">
             </div>
         </div>
 
        
         <div class="form-group">
-          <input type="hidden" name="smalltalk_id" value="<?php echo $id; ?>">
-            <input type="submit" class="btn btn-info" value="更新">
+          <input type="hidden" name="xiaojie_id" value="<?php echo $id; ?>">
+          <input type="hidden" name="mulu_id" value="<?php echo $mulu_id; ?>">
+            <input type="submit" class="btn btn-info" value="提交">
         </div>
      </form>
 </div>
 
 <!-- 配置文件 -->
-    <script type="text/javascript" src="__PUBLIC__/static/library/ueditor/ueditor.config.js?77"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/library/ueditor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
     <script type="text/javascript" src="__PUBLIC__/static/library/ueditor/ueditor.all.js"></script>
     <!-- 实例化编辑器 -->

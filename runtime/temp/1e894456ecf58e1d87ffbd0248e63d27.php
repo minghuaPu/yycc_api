@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:89:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\vpcategory\index.html";i:1507118457;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\header.html";i:1522053976;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\footer.html";i:1510056767;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:89:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\vpcategory\index.html";i:1507118457;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\header.html";i:1522205384;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\footer.html";i:1510056767;}*/ ?>
 <!DOCTYPE html>
 <!--[if IE 8]>
 <html lang="en" class="ie8 no-js">
@@ -151,15 +151,13 @@ table td{
                                         <span></span>
                                     </div>
                                 </li>
-            
 
                                 <li class="nav-item <?php echo  is_active('user','active');?>
                                     ">
-                                    <a href="<?php echo url('user/index'); ?>" class="nav-link nav-toggle">
-                                        <i class="icon-user"></i>
+                                    <a href="<?php echo url('user/index'); ?>" class="nav-link nav-toggle"> <i class="icon-user"></i>
                                         <span class="title">用户管理</span>
                                     </a>
-                                </li> 
+                                </li>
                                 <li class="nav-item <?php echo  is_active('vip','active');?>
                                     ">
                                     <a href="<?php echo url('vip/index'); ?>" class="nav-link nav-toggle">
@@ -173,110 +171,138 @@ table td{
                                         <i class="icon-cup"></i>
                                         <span class="title">答主分类管理</span>
                                     </a>
-                                </li>    
-                                <li class="nav-item <?php echo  is_active('slider','active');?>
+
+                                </li>
+                                <li class="nav-item <?php echo  is_active('slider','active open');?>
+                                    <?php echo  is_active('mobilehdp','active open');?>
                                     ">
                                     <a href="<?php echo url('slider/index'); ?>" class="nav-link nav-toggle">
                                         <i class="icon-cup"></i>
                                         <span class="title">轮播图管理</span>
+                                        <span class="arrow"></span>
                                     </a>
+
+                                    <ul class="sub-menu" >
+                                        <li class="nav-item start ">
+                                            <a href="<?php echo url('mobilehdp/index'); ?>" class="nav-link ">
+                                                <i class="icon-bar-chart"></i>
+                                                <span class="title">移动端</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item start ">
+                                            <a href="<?php echo url('slider/index'); ?>" class="nav-link ">
+                                                <i class="icon-bulb"></i>
+                                                <span class="title">原首页</span>
+                                                <span class="badge badge-success">1</span>
+                                            </a>
+                                        </li>
+                                       
+                                    </ul>
                                 </li>
-                                 <li class="nav-item <?php echo  is_active('mobilehdp','active');?>
-                                    ">
-                                    <a href="<?php echo url('mobilehdp/index'); ?>" class="nav-link nav-toggle">
-                                        <i class="icon-cup"></i>
-                                        <span class="title">移动端幻灯片管理</span>
-                                    </a>
-                                </li>
-                                
+
                                 <li class="nav-item <?php echo  is_active('myask','active');?>
                                     ">
                                     <a href="<?php echo url('myask/index'); ?>" class="nav-link nav-toggle">
                                         <i class="icon-question"></i>
                                         <span class="title">提问管理</span>
                                     </a>
-                                </li> 
+                                </li>
                                 <li class="nav-item <?php echo  is_active('listen','active');?>
                                     ">
                                     <a href="<?php echo url('listen/index'); ?>" class="nav-link nav-toggle">
                                         <i class="icon-cup"></i>
                                         <span class="title">偷听管理</span>
                                     </a>
-                                </li> 
+                                </li>
                                 <li class="nav-item <?php echo  is_active('follow','active');?>
                                     ">
                                     <a href="<?php echo url('follow/index'); ?>" class="nav-link nav-toggle">
                                         <i class="icon-cup"></i>
                                         <span class="title">关注管理</span>
                                     </a>
-                                </li> 
+                                </li>
                                 <li class="nav-item <?php echo  is_active('headline','active');?>
                                     ">
                                     <a href="<?php echo url('headline/index'); ?>" class="nav-link nav-toggle">
                                         <i class="icon-cup"></i>
                                         <span class="title">头条管理</span>
                                     </a>
-                                </li> 
-                                <li class="nav-item <?php echo  is_active('qacategory','active');?>
+                                </li>
+                                <li class="nav-item <?php echo  is_active('qacategory','active open');?>
+                                    <?php echo  is_active('quickask','active open');?>
+                                    <?php echo  is_active('answer','active open');?>
                                     ">
                                     <a href="<?php echo url('qacategory/index'); ?>" class="nav-link nav-toggle">
                                         <i class="icon-cup"></i>
                                         <span class="title">快问分类管理</span>
+                                        <span class="arrow"></span>
                                     </a>
+                                    <ul class="sub-menu" >
+                                        <li class="nav-item <?php echo  is_active('qacategory','active');?>
+                                            ">
+                                            <a href="<?php echo url('qacategory/index'); ?>" class="nav-link nav-toggle">
+                                                <i class="icon-cup"></i>
+                                                <span class="title">快问分类管理</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item <?php echo  is_active('quickask','active');?>
+                                            ">
+                                            <a href="<?php echo url('quickask/index'); ?>" class="nav-link nav-toggle">
+                                                <i class="icon-cup"></i>
+                                                <span class="title">快问管理</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item <?php echo  is_active('answer','active');?>
+                                            ">
+                                            <a href="<?php echo url('answer/index'); ?>" class="nav-link nav-toggle">
+                                                <i class="icon-cup"></i>
+                                                <span class="title">快问回答管理</span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li class="nav-item <?php echo  is_active('quickask','active');?>
-                                    ">
-                                    <a href="<?php echo url('quickask/index'); ?>" class="nav-link nav-toggle">
-                                        <i class="icon-cup"></i>
-                                        <span class="title">快问管理</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item <?php echo  is_active('answer','active');?>
-                                    ">
-                                    <a href="<?php echo url('answer/index'); ?>" class="nav-link nav-toggle">
-                                        <i class="icon-cup"></i>
-                                        <span class="title">快问回答管理</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item <?php echo  is_active('smalltalk','active');?>
+
+                                <li class="nav-item <?php echo  is_active('smalltalk','active open');?>
+                                    <?php echo  is_active('special','active open');?>
                                     ">
                                     <a href="<?php echo url('smalltalk/index'); ?>" class="nav-link nav-toggle">
                                         <i class="icon-disc"></i>
-                                        <span class="title">小讲管理</span>
+                                        <span class="title">课程管理</span>
+                                        <span class="arrow"></span>
                                     </a>
+                                    <ul class="sub-menu" >
+                                        <li class="nav-item start ">
+                                            <a href="<?php echo url('smalltalk/index'); ?>" class="nav-link ">
+                                                <i class="icon-bar-chart"></i>
+                                                <span class="title">课程管理</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item <?php echo  is_active('special','active');?>
+                                            ">
+                                            <a href="<?php echo url('special/index'); ?>" class="nav-link nav-toggle">
+                                                <i class="icon-disc"></i>
+                                                <span class="title">课程专题管理</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item <?php echo  is_active('order','active');?>
+                                            ">
+                                            <a href="<?php echo url('order/index'); ?>" class="nav-link nav-toggle">
+                                                <i class="icon-disc"></i>
+                                                <span class="title">课程订单管理</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item <?php echo  is_active('comment ','active');?>
+                                            ">
+                                            <a href="<?php echo url('comment/index'); ?>" class="nav-link nav-toggle">
+                                                <i class="icon-disc"></i>
+                                                <span class="title">课程评论管理</span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
 
-                                <li class="nav-item <?php echo  is_active('stcate','active');?>
-                                    ">
-                                    <a href="<?php echo url('stcate/index'); ?>" class="nav-link nav-toggle">
-                                        <i class="icon-disc"></i>
-                                        <span class="title">小讲分类管理</span>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item <?php echo  is_active('special','active');?>
-                                    ">
-                                    <a href="<?php echo url('special/index'); ?>" class="nav-link nav-toggle">
-                                        <i class="icon-disc"></i>
-                                        <span class="title">小讲专题管理</span>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item <?php echo  is_active('order','active');?>
-                                    ">
-                                    <a href="<?php echo url('order/index'); ?>" class="nav-link nav-toggle">
-                                        <i class="icon-disc"></i>
-                                        <span class="title">小讲订单管理</span>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item <?php echo  is_active('comment ','active');?>
-                                    ">
-                                    <a href="<?php echo url('comment/index'); ?>" class="nav-link nav-toggle">
-                                        <i class="icon-disc"></i>
-                                        <span class="title">小讲评论管理</span>
-                                    </a>
-                                </li>   
                                 <li class="nav-item <?php echo  is_active('system','active');?>
                                     ">
                                     <a href="<?php echo url('system/index'); ?>" class="nav-link nav-toggle">

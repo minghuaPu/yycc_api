@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:90:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\smalltalk\details.html";i:1522404967;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\header.html";i:1522205384;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\footer.html";i:1510056767;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:90:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\smalltalk\details.html";i:1522640228;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\header.html";i:1522205384;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\footer.html";i:1510056767;}*/ ?>
 <!DOCTYPE html>
 <!--[if IE 8]>
 <html lang="en" class="ie8 no-js">
@@ -347,7 +347,11 @@ table td{
         <td><?php echo $value['id']; ?></td>
         <td><?php echo $value['title']; ?></td>
         <td><?php echo mb_substr($value['audio_name'],0,15); ?></td>
-        <td><a href="<?php echo url('edit_content',['id'=>$value['ml_id']]); ?>" class="btn btn-info">编辑</a></td>
+        <td>
+            <a href="<?php echo url('edit_content',['id'=>$value['ml_id']]); ?>" class="btn btn-info">编辑</a>
+            
+            <a href="<?php echo url('talk_audio',['id'=>$value['ml_id']]); ?>" class="btn btn-info">小节</a>
+        </td>
     </tr>
     <?php endforeach; ?>
 </table>

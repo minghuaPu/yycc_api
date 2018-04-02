@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:95:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\smalltalk\edit_content.html";i:1522639631;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\header.html";i:1522205384;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\footer.html";i:1510056767;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:93:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\smalltalk\talk_audio.html";i:1522641093;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\header.html";i:1522205384;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\footer.html";i:1510056767;}*/ ?>
 <!DOCTYPE html>
 <!--[if IE 8]>
 <html lang="en" class="ie8 no-js">
@@ -331,41 +331,28 @@ table td{
                     <div class="page-content-wrapper">
                         <!-- BEGIN CONTENT BODY -->
                         <div class="page-content" style="min-height: 1021px;">
-                            <!-- BEGIN PAGE HEADER--> 
+                            <!-- BEGIN PAGE HEADER-->
+<a href="<?php echo url('index'); ?>" class="btn btn-info">返回首页</a>
+    <a href="<?php echo url('add_edit_audio',['mulu_id'=>$id]); ?>" class="btn btn-info">添加小节</a>
 
-<div class="self-container mt-3">
-    <h3>编辑课程目录</h3>
-     <form action="<?php echo url('update_content'); ?>" method="post" enctype="multipart/form-data">
-      <div class="form-group">
-            <label >目录名称</label>
-            <div  >
-                <input type="text" class="form-control" value="<?php echo $smalltalk_content['title']; ?>" name="title">
-            </div>
-        </div>
-        
-          <div class="form-group">
-            <label >简介</label>
-            <div  >
-              <textarea name="ke_content" id="baidu_edit" style="height: 580px"><?php echo $smalltalk_content['ke_content']; ?></textarea>
-            </div>
-        </div>
-
-       
-        <div class="form-group">
-          <input type="hidden" name="smalltalk_id" value="<?php echo $id; ?>">
-            <input type="submit" class="btn btn-info" value="更新">
-        </div>
-     </form>
-</div>
-
-<!-- 配置文件 -->
-    <script type="text/javascript" src="__PUBLIC__/static/library/ueditor/ueditor.config.js?77"></script>
-    <!-- 编辑器源码文件 -->
-    <script type="text/javascript" src="__PUBLIC__/static/library/ueditor/ueditor.all.js"></script>
-    <!-- 实例化编辑器 -->
-    <script type="text/javascript">
-        var ue = UE.getEditor('baidu_edit');
-    </script>
+<table class="table">
+    <tr>
+        <th>编号</th>
+        <th>小节标题</th>
+        <th>操作</th>
+    </tr>
+    <?php foreach($audio_list as $value): ?>
+    <tr>
+        <td><?php echo $value['id']; ?></td>
+        <td><?php echo $value['audio_name']; ?></td> 
+        <td>
+            <a href="<?php echo url('add_edit_audio',['id'=>$value['id'],'mulu_id'=>$id]); ?>" class="btn btn-info">编辑</a>
+            
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+<div><?php echo $audio_list->render(); ?></div>
  <!-- BEGIN FOOTER -->
             <div class="page-footer">
                 <div class="page-footer-inner"> 2017 © 技术支持

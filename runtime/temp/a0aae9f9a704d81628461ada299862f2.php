@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:95:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\smalltalk\edit_content.html";i:1522639631;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\header.html";i:1522205384;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\footer.html";i:1510056767;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:87:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\quickask\index.html";i:1507257034;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\header.html";i:1522205384;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\footer.html";i:1510056767;}*/ ?>
 <!DOCTYPE html>
 <!--[if IE 8]>
 <html lang="en" class="ie8 no-js">
@@ -333,39 +333,45 @@ table td{
                         <div class="page-content" style="min-height: 1021px;">
                             <!-- BEGIN PAGE HEADER--> 
 
-<div class="self-container mt-3">
-    <h3>编辑课程目录</h3>
-     <form action="<?php echo url('update_content'); ?>" method="post" enctype="multipart/form-data">
+<div class="mt-3">
+    <form class="form-inline" style="margin:20px 0;" action="">
       <div class="form-group">
-            <label >目录名称</label>
-            <div  >
-                <input type="text" class="form-control" value="<?php echo $smalltalk_content['title']; ?>" name="title">
-            </div>
-        </div>
-        
-          <div class="form-group">
-            <label >简介</label>
-            <div  >
-              <textarea name="ke_content" id="baidu_edit" style="height: 580px"><?php echo $smalltalk_content['ke_content']; ?></textarea>
-            </div>
-        </div>
-
-       
-        <div class="form-group">
-          <input type="hidden" name="smalltalk_id" value="<?php echo $id; ?>">
-            <input type="submit" class="btn btn-info" value="更新">
-        </div>
-     </form>
+        <label>提问者</label>
+        <input type="text" class="form-control" name="user_name" placeholder="Jane Doe" value="<?php echo $user_name; ?>">
+      </div>
+      <button type="submit" class="btn btn-primary">搜索</button>
+    </form>
+    <table class="table">
+        <tr>
+            <th>编号</th>
+            <th>问题</th>
+            <th>价格</th>
+            <th>提问者</th>
+            <th>操作</th>
+        </tr>
+        <?php foreach($quickask_list as $value): ?>
+        <tr>
+            <td><?php echo $value['id']; ?></td>
+            <td title="<?php echo $value['content']; ?>"><?php echo $value['content']; ?></td>
+            <td>￥<?php echo $value['price']; ?></td>
+            <?php if($value['is_anonymous']==1): ?>
+            <td title="<?php echo $value['user_name']; ?>"><?php echo $value['user_name']; ?></td>
+            <?php else: ?>
+            <td>匿名</td>
+            <?php endif; ?>
+            <td>
+                <a href="<?php echo url('delete',['id'=>$value['id']]); ?>" class="btn btn-danger">删除</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+    <div>
+        <?php echo $quickask_list->render(); ?>
+    </div>
 </div>
-
-<!-- 配置文件 -->
-    <script type="text/javascript" src="__PUBLIC__/static/library/ueditor/ueditor.config.js?77"></script>
-    <!-- 编辑器源码文件 -->
-    <script type="text/javascript" src="__PUBLIC__/static/library/ueditor/ueditor.all.js"></script>
-    <!-- 实例化编辑器 -->
-    <script type="text/javascript">
-        var ue = UE.getEditor('baidu_edit');
-    </script>
+<script>
+    
+</script>
  <!-- BEGIN FOOTER -->
             <div class="page-footer">
                 <div class="page-footer-inner"> 2017 © 技术支持

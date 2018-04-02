@@ -123,6 +123,60 @@ class Smalltalk extends \think\Controller
         $this->success("修改成功",url('smalltalk/details',['id'=>input("smalltalk_id")]));
     }
 
+    // 显示目录对应的章节
+    public function talk_audio()
+    {
+        $id = input('id');
+        $this->assign('id', $id);
+
+        // 这个目录有哪些小节
+        // 默认：20
+        $audio_list = db('smalltalk_audio')->where("smalltalk_content_id=$id")->paginate();
+
+        $this->assign('audio_list', $audio_list);
+        
+        return $this->fetch();
+    }
+
+    // 添加/修改目录对应的章节
+    public function add_edit_audio()
+    {
+        if ($_POST) {
+            
+            if ($_POST['xiaojie_id']>0) {
+                // 修改
+                db('smalltalk_audio')->update([
+                    "audio_name"=>input('audio_name'),
+                    "smalltalk_content_id"=>input('mulu_id'),
+                    "id"=>input('xiaojie_id')
+                ]);
+            }else{
+                // 添加
+                db("smalltalk_audio")->insert([
+                    "audio_name"=>input('audio_name'),
+                    "smalltalk_content_id"=>input('mulu_id')
+                ]);
+            }
+
+            $this->success("操作成功",url("talk_audio",["id"=>input('mulu_id')]));
+            
+        }else{
+            $id = input('id');
+            $info = [];
+            if ($id>0) {
+               $info =  db('smalltalk_audio')->where("id=$id")->find();
+
+            }
+            $this->assign('id', $id); //添加行为
+            $this->assign('info', $info); //赋值编辑时候的信息
+            $this->assign('mulu_id', input('mulu_id'));
+            return $this->fetch();
+        }
+       
+      
+        
+    }
+
 }
 
 ?>

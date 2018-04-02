@@ -1,0 +1,23 @@
+{include file='public/header'}
+<a href="{:url('index')}" class="btn btn-info">返回首页</a>
+    <a href="{:url('add_edit_audio',['mulu_id'=>$id])}" class="btn btn-info">添加小节</a>
+
+<table class="table">
+    <tr>
+        <th>编号</th>
+        <th>小节标题</th>
+        <th>操作</th>
+    </tr>
+    {foreach $audio_list as $value}
+    <tr>
+        <td>{$value['id']}</td>
+        <td>{$value['audio_name']}</td> 
+        <td>
+            <a href="{:url('add_edit_audio',['id'=>$value['id'],'mulu_id'=>$id])}" class="btn btn-info">编辑</a>
+            
+        </td>
+    </tr>
+    {/foreach}
+</table>
+<div>{$audio_list->render()}</div>
+{include file='public/footer'}
