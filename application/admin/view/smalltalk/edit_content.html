@@ -1,0 +1,36 @@
+{include file="public/header"} 
+
+<div class="self-container mt-3">
+    <h3>编辑课程目录</h3>
+     <form action="{:url('update_content')}" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+            <label >目录名称</label>
+            <div  >
+                <input type="text" class="form-control" value="{$smalltalk_content.title}" name="title">
+            </div>
+        </div>
+        
+          <div class="form-group">
+            <label >简介</label>
+            <div  >
+              <textarea name="ke_content" id="baidu_edit" style="height: 580px">{$smalltalk_content.ke_content}</textarea>
+            </div>
+        </div>
+
+       
+        <div class="form-group">
+          <input type="hidden" name="smalltalk_id" value="{$id}">
+            <input type="submit" class="btn btn-info" value="更新">
+        </div>
+     </form>
+</div>
+
+<!-- 配置文件 -->
+    <script type="text/javascript" src="__PUBLIC__/static/library/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__PUBLIC__/static/library/ueditor/ueditor.all.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('baidu_edit');
+    </script>
+{include file="public/footer"}

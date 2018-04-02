@@ -1,0 +1,34 @@
+{include file="public/header"} 
+
+<div class="self-container mt-3">
+    <h3>轮播图添加页</h3>
+     <form action="{:url('save')}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label >轮播图</label>
+            <div  >
+                <input type="file" name="slider_img">
+            </div>
+        </div>
+         <div class="form-group">
+            <label >幻灯片分类</label>
+            <div >
+                
+               <select name="cate">
+                   <option value="">请选择分类</option>
+                   <?php
+                    $cate_menu = getSlideCate();
+                   ?>
+                   {foreach $cate_menu as $key=>$cate}
+                   <option value="{$key}">{$cate}</option>
+                   {/foreach}
+
+               </select>
+            </div>
+        </div>
+         
+        <div class="form-group">
+            <input type="submit" class="btn btn-info" value="添加">
+        </div>
+     </form>
+</div>
+{include file="public/footer"}

@@ -1,0 +1,65 @@
+{include file="public/header"} 
+
+<div class="self-container mt-3">
+    <h3>课程添加页</h3>
+     <form action="{:url('save')}" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+            <label >课程名称</label>
+            <div  >
+                <input class="form-control" type="text" name="title">
+            </div>
+        </div>
+        <div class="form-group">
+            <label >多少人参加</label>
+            <div  >
+                <input class="form-control" type="text" name="join_num">
+            </div>
+        </div>
+          <div class="form-group">
+            <label >简介</label>
+            <div  >
+              <textarea name="summary"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >缩略图</label>
+            <div  >
+                <input type="file" name="smalltalk_img">
+            </div>
+        </div>
+           <div class="form-group">
+            <label >所属讲师</label>
+            <div >
+                
+               <select name="vip_id">
+                   <option value="">请选择分类</option>
+                  
+                   {foreach $vip as $key=>$info}
+                   <option value="{$info.id}">{$info.real_name}</option>
+                   {/foreach}
+
+               </select>
+            </div>
+        </div>
+         <div class="form-group">
+            <label >分类</label>
+            <div >
+                
+               <select name="smalltalk_cate_id">
+                   <option value="">请选择分类</option>
+                  
+                   {foreach $cate_menu as $key=>$cate}
+                   <option value="{$cate.id}">{$cate.cate_name}</option>
+                   {/foreach}
+
+               </select>
+            </div>
+        </div>
+         
+        <div class="form-group">
+            <input type="submit" class="btn btn-info" value="添加">
+        </div>
+     </form>
+</div>
+{include file="public/footer"}
