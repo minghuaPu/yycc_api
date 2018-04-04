@@ -44,6 +44,10 @@ class Smalltalk extends \think\Controller
         $cate_menu = db('smalltalk_cate')->select();
         $this->assign('cate_menu',$cate_menu);
 
+
+        $cate_type=db('type')->select();
+        $this->assign('cate_type',$cate_type);
+
         return $this->fetch();
          
     }
@@ -81,7 +85,8 @@ class Smalltalk extends \think\Controller
            // 2312323.jpg220*130.jpg
         }
 
-
+// echo input("cate_type");
+// exit();
         db("smalltalk")->insert([
             "title"=>input("title"),
             "join_num"=>input("join_num"),
@@ -90,6 +95,8 @@ class Smalltalk extends \think\Controller
             "create_time"=>time(),
             "smalltalk_cate_id"=>input("smalltalk_cate_id"),
             "smalltalk_img"=>$smalltalk_img,
+            "ke_type"=>input("cate_type")
+
         ]);
 
         $this->success("添加成功",url('index'));
