@@ -1,0 +1,44 @@
+{include file="public/header"} 
+
+<div class="self-container mt-3">
+    <h3>商城类别添加页</h3>
+     <form action="{:url('save')}" method="post" enctype="multipart/form-data">
+         <div class="form-group">
+            <label >分类</label>
+            <div >
+                
+               <select name="">
+                   <option value="">请选择分类</option>
+                  
+                 <!--   foreach $cate_menu as $key=>$cate}
+                   <option value="$cate.id}">$cate.cate_name}</option>
+                   /foreach} -->
+
+               </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label >所添加的类型</label>
+            <div  >
+                <input class="form-control" type="text" name="crea_name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label >缩略图1</label>
+            <div  >
+                <input type="file" name="crea_img1">
+            </div>
+        </div>
+        <div class="form-group">
+            <label >缩略图2</label>
+            <div  >
+                <input type="file" name="crea_img2">
+            </div>
+        </div>
+                 
+        <div class="form-group">
+            <input type="submit" class="btn btn-info" value="添加">
+        </div>
+     </form>
+</div>
+{include file="public/footer"}
