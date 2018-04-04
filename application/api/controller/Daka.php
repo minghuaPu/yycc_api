@@ -14,6 +14,10 @@ class Daka extends \think\Controller
 		$uid=input('uid');
 		$_input=input('input');
 		$textarea3=input('textarea3');
+		$theme_id=input('theme_id');
+		$_user=db('user')->where("id = $uid")->find();
+		$income_money = $_user['total_income'] +0.01;
+		$profit_money = $_user['total_profit']+0.01;
 		$info =db('daka')
 				->where("dakaTime = 'unix_timestamp(now())'")
 				->find();
@@ -23,8 +27,15 @@ class Daka extends \think\Controller
 					"input"=>$_input,
 					"textarea3"=>$textarea3,
 					"dakaTime"=>time(),
+					"theme_id"=>$theme_id
 					// "question_id"=>$question_id
 				]);
+			 
+			 db('user')->update([
+			 	"id"=>$uid,
+			 	"total_income"=>$income_money,
+			 	"total_profit"=>$profit_money
+			 ]);
 			return json([
 				"status"=>1,
 				"msg"=>"打卡成功"
@@ -68,15 +79,14 @@ class Daka extends \think\Controller
 				 ->where($where)
 				 ->field('d.id,us.user_name,d.dakaTime,d.textarea3,us.head_img')
 				 ->join('user us','us.id = d.uid')
-				 ->order("d.dakaTime desc")
+				 ->order("d.id desc")
 				 ->limit("$p,5")
 				 ->select();
 
 				 // print_r($allData);
 
 		return json(
-			["allData"=>$allData
-		]);
+			["allData"=>$allData]);
 	}
 
 

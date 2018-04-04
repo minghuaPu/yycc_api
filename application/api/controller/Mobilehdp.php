@@ -1,21 +1,14 @@
-<?php
+<?php 
 namespace app\api\controller;
 use \think\Session;
 
 class Mobilehdp extends \think\Controller
 {
-	function index()
+	public function index()
 	{
-		 $page_cate = input("page_cate");
-
-		 $page_slide = db("mobilehdp")
-		 	->where("cate='$page_cate'")
-		 	->select();
-
-		 return json($page_slide);
+		$page_cate= input('page_cate');
+		$page_slide=db('modilehdp')->where("cate = '$page_cate'")->select();
+		return json($page_slide);
 	}
-	
 }
-
-
-?>
+ ?>
