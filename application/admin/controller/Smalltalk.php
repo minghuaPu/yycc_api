@@ -162,7 +162,7 @@ class Smalltalk extends \think\Controller
             
         }else{
             $id = input('id');
-            $info = [];
+            $info = null;
             if ($id>0) {
                $info =  db('smalltalk_audio')->where("id=$id")->find();
 

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:84:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\index\index.html";i:1501300502;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\header.html";i:1522205384;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\footer.html";i:1510056767;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:84:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\index\index.html";i:1501300502;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\header.html";i:1522747247;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\footer.html";i:1510056767;}*/ ?>
 <!DOCTYPE html>
 <!--[if IE 8]>
 <html lang="en" class="ie8 no-js">
@@ -301,6 +301,23 @@ table td{
                                             </a>
                                         </li>
                                     </ul>
+                                </li>
+
+                                <li class="nav-item <?php echo is_active('shoppingmall','active open');?>  <?php echo  is_active('special','active open');?>">
+                                    <a href="<?php echo url('shoppingmall/index'); ?>" class="nav-link nav-toggle">
+                                        <i class="icon-disc"></i>
+                                        <span class="title">商城管理</span>
+                                        <span class="arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu" >
+                                        <li class="nav-item start ">
+                                            <a href="<?php echo url('shoppingmall/index'); ?>" class="nav-link ">
+                                                <i class="icon-bar-chart"></i>
+                                                <span class="title">商城管理</span>
+                                            </a>
+                                        </li>
+                                    </ul>                
+
                                 </li>
 
                                 <li class="nav-item <?php echo  is_active('system','active');?>

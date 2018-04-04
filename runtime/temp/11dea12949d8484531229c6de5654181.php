@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:88:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\smalltalk\index.html";i:1522395830;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\header.html";i:1522747247;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\footer.html";i:1510056767;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:91:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\shoppingmall\index.html";i:1522747247;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\header.html";i:1522747247;s:86:"D:\wamp64\www\yiyuanchengcai\fenda\public/../application/admin\view\public\footer.html";i:1510056767;}*/ ?>
 <!DOCTYPE html>
 <!--[if IE 8]>
 <html lang="en" class="ie8 no-js">
@@ -355,23 +355,19 @@ table td{
 <table class="table">
     <tr>
         <th>编号</th>
-        <th>专家名称</th>
+        <th>页面类型</th>
         <th>分类名称</th>
-        <th>小讲标题</th>
-        <th>专题</th>
-        <th>价格</th>
-        <th>创建时间</th>
+        <th>图1</th>
+        <th>图2</th>
         <th>操作</th>
     </tr>
-    <?php foreach($smalltalk_list as $value): ?>
+    <?php foreach($shoppingmall_list as $value): ?>
     <tr>
         <td><?php echo $value['id']; ?></td>
-        <td><?php echo $value['real_name']; ?></td>
-        <td><?php echo $value['cate_name']; ?></td>
-        <td><?php echo mb_substr($value['st_title'],0,7); ?>...</td>
-        <td><?php echo mb_substr($value['sts_title'],0,7); ?>...</td>
-        <td><?php echo $value['price']; ?></td>
-        <td><?php echo $value['create_time']; ?></td>
+        <td></td>
+        <td><?php echo $value['crea_name']; ?></td>
+        <td><?php echo mb_substr($value['crea_img1'],0,7); ?>...</td>
+        <td><?php echo mb_substr($value['crea_img2'],0,7); ?>...</td>
         <td>
             <a href="<?php echo url('details',['id'=>$value['id']]); ?>" class="btn btn-info">目录</a>
             <a href="<?php echo url('delete',['id'=>$value['id']]); ?>" class="btn btn-danger">删除</a>
@@ -379,7 +375,7 @@ table td{
     </tr>
     <?php endforeach; ?>
 </table>
-<div><?php echo $smalltalk_list->render(); ?></div>
+<div><?php echo $shoppingmall_list->render(); ?></div>
  <!-- BEGIN FOOTER -->
             <div class="page-footer">
                 <div class="page-footer-inner"> 2017 © 技术支持
