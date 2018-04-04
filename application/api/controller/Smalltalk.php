@@ -87,6 +87,12 @@ class Smalltalk extends \think\Controller
 
 	    return $smalltalk_id;
 	}
+
+	function lanmu(){
+		$type_id = db("type")->select();
+
+		 return json($type_id);
+	}
 }
 
 
