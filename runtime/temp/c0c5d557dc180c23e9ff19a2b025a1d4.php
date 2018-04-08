@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:102:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\shoppingmall\index.html";i:1522836304;s:97:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\public\header.html";i:1522737701;s:97:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\public\footer.html";i:1522636046;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:101:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\shoppingmall\edit.html";i:1522836147;s:97:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\public\header.html";i:1522737701;s:97:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\public\footer.html";i:1522636046;}*/ ?>
 <!DOCTYPE html>
 <!--[if IE 8]>
 <html lang="en" class="ie8 no-js">
@@ -348,35 +348,50 @@ table td{
                     <div class="page-content-wrapper">
                         <!-- BEGIN CONTENT BODY -->
                         <div class="page-content" style="min-height: 1021px;">
-                            <!-- BEGIN PAGE HEADER-->
-<div class="row">
-    <a href="<?php echo url('add'); ?>" class="btn btn-info">添加</a>
+                            <!-- BEGIN PAGE HEADER--> 
+
+<div class="self-container mt-3">
+    <h3>商城类别添加页</h3>
+     <form action="<?php echo url('save'); ?>" method="post" enctype="multipart/form-data">
+         <div class="form-group">
+            <label >分类</label>
+            <div >
+                
+               <select name="">
+                   <option value="">请选择分类</option>
+                  
+                 <!--   foreach $cate_menu as $key=>$cate}
+                   <option value="$cate.id}">$cate.cate_name}</option>
+                   /foreach} -->
+
+               </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label >所添加的类型</label>
+            <div  >
+                <input class="form-control" type="text" name="crea_name" value="<?php echo $shoppingmall_list['crea_name']; ?>">
+            </div>
+        </div>
+        <div class="form-group">
+            <label >缩略图1</label>
+            <div  >
+                <input type="file" name="crea_img1" value="<?php echo $shoppingmall_list['crea_img1']; ?>">
+            </div>
+        </div>
+        <div class="form-group">
+            <label >缩略图2</label>
+            <div  >
+                <input type="file" name="crea_img2" value="<?php echo $shoppingmall_list['crea_img2']; ?>">
+            </div>
+        </div>
+                 
+        <div class="form-group">
+            <input type="submit" class="btn btn-info" value="提交">
+        </div>
+     </form>
 </div>
-<table class="table">
-    <tr>
-        <th>编号</th>
-        <th>页面类型</th>
-        <th>分类名称</th>
-        <th>图1</th>
-        <th>图2</th>
-        <th>操作</th>
-    </tr>
-    <?php foreach($shoppingmall_list as $value): ?>
-    <tr>
-        <td><?php echo $value['id']; ?></td>
-        <td></td>
-        <td><?php echo $value['crea_name']; ?></td>
-        <td><?php echo mb_substr($value['crea_img1'],0,7); ?>...</td>
-        <td><?php echo mb_substr($value['crea_img2'],0,7); ?>...</td>
-        <td>
-            <a href="<?php echo url('details',['id'=>$value['id']]); ?>" class="btn btn-info">目录</a>
-            <a href="<?php echo url('edit',['id'=>$value['id']]); ?>" class="btn btn-info">更改</a>
-            <a href="<?php echo url('delete',['id'=>$value['id']]); ?>" class="btn btn-danger">删除</a>
-        </td>
-    </tr>
-    <?php endforeach; ?>
-</table>
-<div><?php echo $shoppingmall_list ->render(); ?></div>
+
  <!-- BEGIN FOOTER -->
             <div class="page-footer">
                 <div class="page-footer-inner"> 2017 © 技术支持

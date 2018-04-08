@@ -1,0 +1,29 @@
+{include file='public/header'}
+<div class="row">
+    <a href="{:url('add_content',['cread_id'=>$cread_id])}" class="btn btn-info">添加{$cread_id}</a>
+</div>
+<table class="table">
+    <tr>
+        <th>编号</th>
+        <th>产品名称</th>
+        <th>产品简介</th>
+        <th>金额</th>
+        <th>产品详情</th>
+        <th>操作</th>
+    </tr>
+    {foreach $chanpin_list as $value}
+    <tr>
+        <td>{$value['id']}</td>
+        <td>{$value['chanpin_name']}</td>
+        <td>{$value['summary']}</td>
+        <td>{$value['chanpin_money']}</td>
+        <td>{$value['chanpin_info']}</td>
+        <td>
+            <a href="{:url('edit_content',['id'=>$value['id']])}" class="btn btn-info">更改</a>
+            <a href="{:url('delete_content',['id'=>$value['id'],'cread_id'=>$value['cread_id']])}" class="btn btn-danger">删除</a>
+        </td>
+    </tr>
+    {/foreach}
+</table>
+<div>{$chanpin_list->render()}</div>
+{include file='public/footer'}

@@ -20,10 +20,11 @@
         <td>{$value['crea_img2']|mb_substr=0,7}...</td>
         <td>
             <a href="{:url('details',['id'=>$value['id']])}" class="btn btn-info">目录</a>
+            <a href="{:url('edit',['id'=>$value['id']])}" class="btn btn-info">更改</a>
             <a href="{:url('delete',['id'=>$value['id']])}" class="btn btn-danger">删除</a>
         </td>
     </tr>
     {/foreach}
 </table>
-<div>{$shoppingmall_list->render()}</div>
+<div>{$shoppingmall_list ->render()}</div>
 {include file='public/footer'}

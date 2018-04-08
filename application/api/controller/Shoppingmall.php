@@ -9,7 +9,7 @@ class Shoppingmall extends \think\Controller
 		$shangpin_crea = db("shangcheng")
 			->alias('sc')
 			->field('sc.id,sc.crea_name,sc.crea_img1,sc.crea_img2,p.id pid, p.cread_id, p.chanpin_name, p.summary, p.chanpin_info') 
-			->join('chanpin p','sc.id =p.cread_id','left')
+			->join('shangcheng_chanpin p','sc.id =p.cread_id','left')
 			->select();
 
 			$new_a = [];
@@ -45,12 +45,32 @@ class Shoppingmall extends \think\Controller
 	public function chanpin_read()
 	{
 		$chanpin_id =input("chanpin_id");	
-		$chapin_info = db("chanpin")
+		$chapin_info = db("shangcheng_chanpin")
 			->where("id='$chanpin_id'")
 			->find();
 		
 		return json($chapin_info);
 	}
+
+	public function chanpin_addsave()
+	{
+	   $cread_id = input('chanpin_id');
+       $chanpin_name = input('chanpin_name');
+       $summary = input('summary');
+       $chanpin_money = input('chanpin_money');
+       $chanpin_info = input('chanpin_info');
+
+        db('shangcheng_chanpin')->insert([
+            "cread_id" => $cread_id,
+            "chanpin_name" => $chanpin_name,
+            "summary" => $summary,
+            "chanpin_money" => $chanpin_money,
+            "chanpin_info" => $chanpin_info,
+        ]);
+        
+       
+    }
+	
 }
 
 

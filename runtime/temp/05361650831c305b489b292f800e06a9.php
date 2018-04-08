@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:102:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\shoppingmall\index.html";i:1522836304;s:97:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\public\header.html";i:1522737701;s:97:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\public\footer.html";i:1522636046;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:101:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\smalltalk\details.html";i:1522641416;s:97:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\public\header.html";i:1522737701;s:97:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\public\footer.html";i:1522636046;}*/ ?>
 <!DOCTYPE html>
 <!--[if IE 8]>
 <html lang="en" class="ie8 no-js">
@@ -349,34 +349,30 @@ table td{
                         <!-- BEGIN CONTENT BODY -->
                         <div class="page-content" style="min-height: 1021px;">
                             <!-- BEGIN PAGE HEADER-->
-<div class="row">
-    <a href="<?php echo url('add'); ?>" class="btn btn-info">添加</a>
-</div>
+<a href="<?php echo url('index'); ?>" class="btn btn-info">返回首页</a>
+    <a href="<?php echo url('add_content',['smalltalk_id'=>$id]); ?>" class="btn btn-info">添加目录</a>
+
 <table class="table">
     <tr>
         <th>编号</th>
-        <th>页面类型</th>
-        <th>分类名称</th>
-        <th>图1</th>
-        <th>图2</th>
+        <th>小讲讲单标题</th>
+        <th>小讲讲单内容</th>
         <th>操作</th>
     </tr>
-    <?php foreach($shoppingmall_list as $value): ?>
+    <?php foreach($stc_list as $value): ?>
     <tr>
         <td><?php echo $value['id']; ?></td>
-        <td></td>
-        <td><?php echo $value['crea_name']; ?></td>
-        <td><?php echo mb_substr($value['crea_img1'],0,7); ?>...</td>
-        <td><?php echo mb_substr($value['crea_img2'],0,7); ?>...</td>
+        <td><?php echo $value['title']; ?></td>
+        <td><?php echo mb_substr($value['audio_name'],0,15); ?></td>
         <td>
-            <a href="<?php echo url('details',['id'=>$value['id']]); ?>" class="btn btn-info">目录</a>
-            <a href="<?php echo url('edit',['id'=>$value['id']]); ?>" class="btn btn-info">更改</a>
-            <a href="<?php echo url('delete',['id'=>$value['id']]); ?>" class="btn btn-danger">删除</a>
+            <a href="<?php echo url('edit_content',['id'=>$value['ml_id']]); ?>" class="btn btn-info">编辑</a>
+            
+            <a href="<?php echo url('talk_audio',['id'=>$value['ml_id']]); ?>" class="btn btn-info">小节</a>
         </td>
     </tr>
     <?php endforeach; ?>
 </table>
-<div><?php echo $shoppingmall_list ->render(); ?></div>
+<div><?php echo $stc_list->render(); ?></div>
  <!-- BEGIN FOOTER -->
             <div class="page-footer">
                 <div class="page-footer-inner"> 2017 © 技术支持

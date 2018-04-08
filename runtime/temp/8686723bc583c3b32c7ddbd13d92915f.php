@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:96:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\answer\index.html";i:1522636046;s:97:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\public\header.html";i:1522736029;s:97:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\public\footer.html";i:1522636046;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:96:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\answer\index.html";i:1522636046;s:97:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\public\header.html";i:1522737701;s:97:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\public\footer.html";i:1522636046;}*/ ?>
 <!DOCTYPE html>
 <!--[if IE 8]>
 <html lang="en" class="ie8 no-js">
@@ -303,15 +303,15 @@ table td{
                                     </ul>
                                 </li>
 
-                                <li class="nav-item <?php echo is_active('smalltalk','active open');?>  <?php echo  is_active('special','active open');?>">
-                                    <a href="<?php echo url('smalltalk/index'); ?>" class="nav-link nav-toggle">
+                                <li class="nav-item <?php echo is_active('shoppingmall','active open');?>  <?php echo  is_active('special','active open');?>">
+                                    <a href="<?php echo url('shoppingmall/index'); ?>" class="nav-link nav-toggle">
                                         <i class="icon-disc"></i>
                                         <span class="title">商城管理</span>
                                         <span class="arrow"></span>
                                     </a>
                                     <ul class="sub-menu" >
                                         <li class="nav-item start ">
-                                            <a href="<?php echo url('smalltalk/index'); ?>" class="nav-link ">
+                                            <a href="<?php echo url('shoppingmall/index'); ?>" class="nav-link ">
                                                 <i class="icon-bar-chart"></i>
                                                 <span class="title">商城管理</span>
                                             </a>
