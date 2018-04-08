@@ -13,8 +13,8 @@ class Viper extends \think\Controller
 
 
 		$vip_list = db("vip")->alias('v')
-                    ->order('v.listen_num DESC')
-                    ->field('v.id,v.price,v.real_name,v.identity,v.status,v.introduce,v.listen_num,v.answer_num,v.head_img,vc.cate_name,v.is_real')
+                    ->order('v.id DESC')
+                    ->field('v.id,v.price,v.real_name,v.identity,v.status,v.introduce,v.listen_num,v.answer_num,v.head_img,vc.cate_name,v.is_real,v.become_time')
                     ->where("vip_cate_id = $cateId")
                     ->join('vip_cate vc','vc.id = v.vip_cate_id')
                     ->limit(4)

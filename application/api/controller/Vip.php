@@ -68,7 +68,7 @@ class Vip extends \think\Controller
             $user_id = input('user_id');
             $vip_list = db("vip")->alias('a')
                   ->where('a.id',$vip_id)
-                  ->field('a.id,real_name,identity,a.status,a.price,a.listen_num,a.answer_num,a.introduce,a.head_img,a.vip_cate_id,b.cate_name,a.head_img,is_real')
+                  ->field('a.id,real_name,identity,a.status,a.price,a.listen_num,a.answer_num,a.introduce,a.head_img,a.vip_cate_id,b.cate_name,a.head_img,is_real,a.become_time')
                   ->join('vip_cate b','a.vip_cate_id = b.id')
                   ->find();
             $vip_listen_id = db("vip_listen")
