@@ -1,29 +1,45 @@
 {include file="public/header"} 
 
 <div class="self-container mt-3">
-    <h3>轮播图编辑页</h3>
-     <form action="{:url('update')}" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            <label >轮播图</label>
-            <div class="img" id="sliderimg">
-                <img alt="+点击添加图片" src="__PUBLIC__/static/api/img/{$slider_info['slider_img']}" class="show-img">
-                <input type="file" name="slider_img">
+    <h3>商城类别添加页</h3>
+     <form action="{:url('save')}" method="post" enctype="multipart/form-data">
+         <div class="form-group">
+            <label >分类</label>
+            <div >
+                
+               <select name="">
+                   <option value="">请选择分类</option>
+                  
+                 <!--   foreach $cate_menu as $key=>$cate}
+                   <option value="$cate.id}">$cate.cate_name}</option>
+                   /foreach} -->
+
+               </select>
             </div>
         </div>
         <div class="form-group">
-            <label >小讲</label>
-            <select name="smalltalk_id" class="form-control">
-                <option value="">请选择</option>
-               {foreach $smalltalk_list as $value}
-                <option {if $value['id']==$slider_info['smalltalk_id']} selected {/if} value="{$value['id']}">{$value['id']}</option>
-               {/foreach}
-            </select>
+            <label >所添加的类型</label>
+            <div  >
+                <input class="form-control" type="text" name="crea_name" value="{$shoppingmall_list.crea_name}">
+            </div>
         </div>
         <div class="form-group">
-            <input type="hidden" name="img" value="{$slider_info['slider_img']}">
-            <input type="hidden" name="slider_id" value="{$slider_info.slider_id}">
-            <input type="submit" class="btn btn-info" value="保存">
+            <label >缩略图1</label>
+            <div  >
+                <input type="file" name="crea_img1" value="{$shoppingmall_list.crea_img1}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label >缩略图2</label>
+            <div  >
+                <input type="file" name="crea_img2" value="{$shoppingmall_list.crea_img2}">
+            </div>
+        </div>
+                 
+        <div class="form-group">
+            <input type="submit" class="btn btn-info" value="提交">
         </div>
      </form>
 </div>
+
 {include file="public/footer"}

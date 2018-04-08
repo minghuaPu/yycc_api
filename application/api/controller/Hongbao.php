@@ -37,7 +37,10 @@ class Hongbao extends \think\Controller
 		//排序    order()
 		//find()   只有一条数据  select() 多条数据
 		//sql  CURDATE()当前日期  FROM_UNIXTIME() 时间戳转为正常时间
-		$uid=$_GET['uid'];
+		$uid=input('uid');
+		if ($uid<=0) {
+			return 0;
+		}
 		$info = db("hongbao")
 				->where("uid = $uid and FROM_UNIXTIME(a_time,'%Y-%m-%d') = CURDATE()")
 				->find();
