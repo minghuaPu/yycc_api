@@ -43,6 +43,25 @@ class Cate extends \think\Controller
 		 // print_r($list);exit();
 		 return json($list);
 	}
+
+	function cate_lists()
+	{	
+		$cate_id = input('cateId');
+		$page= (input('page')-1)*5;
+		
+		 $list = db("smalltalk")
+		 ->alias('s')
+		 ->field('s.smalltalk_cate_id,s.title,s.join_num,s.ke_type,
+		 	s.smalltalk_img,v.real_name,s.price,s.id')
+		 ->where("smalltalk_cate_id = '$cate_id'") //这是条件
+		 ->join('vip v','v.id = s.vip_id')
+		 ->limit("$page,5")
+		 ->select();
+		 // ->limit("$page,5");
+		
+		 
+		 return json($list);
+	}
 }
 
 
