@@ -29,7 +29,7 @@ class Smalltalk extends \think\Controller
 			->field('s.id,s.title,s.smalltalk_img,s.join_num,s.create_time,v.real_name,v.identity,v.head_img')
 			->join('vip v','s.vip_id = v.id')
 			->where("smalltalk_cate_id=".$cat_id)
-			->order('s.create_time desc')
+			->order('s.id desc')
 			->paginate(5);
 			return json($list);
 		}else if($type == "vip"){
@@ -70,8 +70,13 @@ class Smalltalk extends \think\Controller
 
         $img_name = saveAndgetSrc(ROOT_PATH."public/static/api/img/",'img');
 	    $smalltalk_img = $img_name;
+	    
+	     $image = \think\Image::open(ROOT_PATH."public/static/api/img/".$img_name);
+	     // 按照原图的比例生成一个最大为150*150的缩略图并保存为thumb.png
+        $image->thumb(220,130,\think\Image::THUMB_CENTER)->save(ROOT_PATH."public/static/api/img/".$smalltalk_img."220_130.jpg");
+        $image->thumb(140,140,\think\Image::THUMB_CENTER)->save(ROOT_PATH."public/static/api/img/".$smalltalk_img."140_140.jpg");
 
-        db('smalltalk')->insert(['title'=>input('title'),'smalltalk_img'=>$smalltalk_img,'smalltalk_cate_id'=>input('cate_id'),'price'=>input('price'),'summary'=>input('content'),'vip_id'=>$vip_id]);
+        db('smalltalk')->insert(['title'=>input('title'),'smalltalk_img'=>'/static/api/img/'.$smalltalk_img,'smalltalk_cate_id'=>input('cate_id'),'price'=>input('price'),'summary'=>input('content'),'vip_id'=>$vip_id]);
 
         $smalltalk_id = db('smalltalk')->getLastInsID();
 
@@ -81,7 +86,7 @@ class Smalltalk extends \think\Controller
             foreach ($value['sub_list'] as $k => $val) {
                 $file_name = 'novel_'.$key.'_'.$k;
                 $audio = saveAndgetSrc(ROOT_PATH."public/static/api/audio/",$file_name);
-                db('smalltalk_audio')->insert(['audio_name'=>$val['name'],'audio'=>$audio,'smalltalk_content_id'=>$smalltalk_content_id]);
+                db('smalltalk_audio')->insert(['audio_name'=>$val['name'],'audio'=>'/static/api/audio/'.$audio,'smalltalk_content_id'=>$smalltalk_content_id]);
             }
         }
 

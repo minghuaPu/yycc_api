@@ -7,6 +7,8 @@
         <input type="text" class="form-control" name="real_name" placeholder="Jane Doe" value="{$real_name}">
       </div>
       <button type="submit" class="btn btn-primary">搜索</button>
+    <a href="{:url('add_edit_info')}" class="btn btn-success">添加</a>
+
     </form>
     <table class="table">
         <tr>
@@ -23,6 +25,8 @@
             <td title="{$value['summary']}">{$value['summary']}</td>
             <td title="{$value['real_name']}">{$value['real_name']}</td>
             <td>
+    <a href="{:url('add_edit_info',['id'=>$value['id']])}" class="btn btn-primary">编辑</a>
+
                 <a href="{:url('delete',['id'=>$value['id']])}" class="btn btn-danger">删除</a>
             </td>
         </tr>

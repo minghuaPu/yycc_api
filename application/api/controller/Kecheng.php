@@ -24,7 +24,7 @@ class Kecheng extends \think\Controller
 		return json($list);
 	}
 	function getKeCate(){
-		$cate_list = db('smalltalk_cate')->select();
+		$cate_list = db('smalltalk_cate')->limit(4)->select();
 
 		return json($cate_list);
 	}

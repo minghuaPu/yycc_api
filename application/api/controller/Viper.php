@@ -28,4 +28,4 @@ class Viper extends \think\Controller
 	}
 }
 
- ?>
+?>
