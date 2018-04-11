@@ -1,0 +1,47 @@
+{include file="public/header"}
+<div class="self-container mt-3">
+  <h3>资讯添加/更新</h3>
+  <form action="{:url('add_edit_info')}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label >资讯标题</label>
+      <div  >
+        <input type="text" class="form-control" name="title" value="{$info.title}"></div>
+    </div>
+    <div class="form-group">
+      <label >缩略图</label>
+      <div  >
+        <input type="file" name="heading_img">
+        <input type="hidden" name="old_heading_img" value="{$info.heading_img}">
+        {if $info.heading_img}
+        <a href="__PUBLIC__{$info.heading_img}" target="_blank">
+           <img src="__PUBLIC__{$info.heading_img}" style="width: 100px" alt="">
+        </a>
+        {/if}
+      </div>
+    </div>
+    <div class="form-group">
+      <label >简介</label>
+      <div  >
+        <textarea style="margin: 0px; width: 691px; height: 75px;" name="summary" >{$info.summary}</textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label >内容</label>
+      <div  >
+        <textarea name="content" id="baidu_edit">{$info.content}</textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="hidden" name="id" value="{$info.id}">
+      <input type="submit" class="btn btn-info" value="提交"></div>
+  </form>
+</div>
+
+<!-- 配置文件 -->
+<script type="text/javascript" src="__PUBLIC__/static/library/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="__PUBLIC__/static/library/ueditor/ueditor.all.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">var ue = UE.getEditor('baidu_edit');</script>
+{include file="public/footer"}

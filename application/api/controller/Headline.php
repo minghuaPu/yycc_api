@@ -71,7 +71,7 @@ class Headline extends \think\Controller
 	    //$info['heading_img'] = '/static/img/'.$name;
 
 	    $name = saveAndgetSrc(ROOT_PATH."public/static/api/img/",'file');
-	    $info['heading_img'] = $name;
+	    $info['heading_img'] = '/static/api/img/'.$name;
 
 	    unset($info['type']);
 	    db('headline')->insert($info);
