@@ -44,7 +44,7 @@ function getSlideCate()
 			"shop"=>'商城首页',
 		  "promote"=>'提升首页',
 		  "job"=>'招聘首页',
-		  "kka"=>'打卡首页',
+		  "daka"=>'打卡首页',
 		  "home"=>'总首页',
 		];
 	return  $cate_a;

@@ -47,26 +47,17 @@ class Cate extends \think\Controller
 	function cate_lists()
 	{	
 		$cate_id = input('cateId');
-<<<<<<< HEAD
 		$page= (input('page')-1)*5;
-		
-=======
-
->>>>>>> 9437520ef8c05e04ec02f8f0be19516c5c91fc01
+		 
 		 $list = db("smalltalk")
 		 ->alias('s')
 		 ->field('s.smalltalk_cate_id,s.title,s.join_num,s.ke_type,
 		 	s.smalltalk_img,v.real_name,s.price,s.id')
-<<<<<<< HEAD
 		 ->where("smalltalk_cate_id = '$cate_id'") //这是条件
 		 ->join('vip v','v.id = s.vip_id')
 		 ->limit("$page,5")
 		 ->select();
-		 // ->limit("$page,5");
-=======
-		 ->join('vip v','v.id = s.vip_id')
-		 ->paginate(10);
->>>>>>> 9437520ef8c05e04ec02f8f0be19516c5c91fc01
+		 // ->limit("$page,5"); 
 		
 		 
 		 return json($list);

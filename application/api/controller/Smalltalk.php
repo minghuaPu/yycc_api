@@ -42,7 +42,7 @@ class Smalltalk extends \think\Controller
 		}else if($type=="smalltalk"){
 			$smalltalk_id = input('id');
 			$listb = db("smalltalk")->alias('s')
-			->field('s.id,s.title,s.smalltalk_cate_id,s.smalltalk_img,s.duration,s.special_id,s.price,s.summary,s.join_num,s.create_time,s.vip_id,v.real_name,v.head_img')
+			->field('s.id,s.title,s.smalltalk_cate_id,s.smalltalk_img,s.duration,s.special_id,s.price,s.summary,s.join_num,s.create_time,s.vip_id,v.real_name,v.head_img,s.preview_video')
 			->where("s.id=$smalltalk_id")
 			->join('vip v','s.vip_id = v.id')
 			->find();
