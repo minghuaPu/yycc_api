@@ -32,6 +32,49 @@ class Purchaseask extends \think\Controller
 		db("ask_buy")->insert($data);
 		db('user')->where('id='.$user_id)->setInc('total_income', 1);
 	}
+	function getTags()
+	{
+		$vid= input('vid');
+		$tags= input('tags');
+		$uid= input('uid');
+		$hastags = db('tutorDetails_tags')->where("vid = '$vid' and tags = '$tags'")->find();
+		if(empty($hastags)){
+			db('tutorDetails_tags')->insert([
+				'vid'=>$vid,
+				'tags'=>$tags,
+				'uid'=>$uid
+				
+			]);
+			$hastagsid=db('tutorDetails_tags')
+						->where("vid = '$vid' and tags = '$tags'")
+						->find();
+
+			// $hastagsid['id'];
+			db('tutorDetails_like')->insert([
+				'uid'=>$uid,
+				'tagid'=>$hastagsid['id']
+			]);
+			return json([
+				'status'=>1,
+				'msg'=>"赠与成功"
+			]);
+		}else{
+			$tagid = $hastags['id'];
+			$tags_like = db('tutorDetails_like')->where("uid = '$uid' and tagid = '$tagid'");
+			if(empty($tags_like)){
+				db('tutorDetails_like')->insert([
+					'uid'=>$uid,
+					'tagid'=>$tagid
+				]);
+			}
+			
+			return json([
+				'status'=>2,
+				'msg'=>"该标签已存在"
+			]);
+		}
+		
+	}
 }
 
 
