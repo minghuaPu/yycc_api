@@ -1,0 +1,28 @@
+{include file="public/header"}
+<div class="mt-3">
+
+    <a href="{:url('add_edit_info')}" class="btn btn-success">添加</a>
+
+    <table class="table">
+        <tr>
+            <th>编号</th>
+            <th>名称</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        {foreach $smallcate_list as $value}
+        <tr>
+            <td>{$value['id']}</td>
+            <td >{$value['cate_name']}</td>
+            <td >{$value['status']}</td>
+            <td>
+                <a href="{:url('add_edit_info',['id'=>$value['id']])}" class="btn btn-primary">编辑</a>
+                <a href="{:url('delete',['id'=>$value['id']])}" class="btn btn-danger">删除</a>
+            </td>
+        </tr>
+        {/foreach}
+    </table>
+    <div>{$smallcate_list->render()}</div>
+</div>
+<script></script>
+{include file="public/footer"}

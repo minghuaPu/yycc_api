@@ -12,9 +12,9 @@ class News extends \think\Controller
 		# code...
 		$list = db("headline")
 				->alias('h')
-				->field('h.id,h.title,h.summary,h.content,h.create_time,h.vip_id,h.heading_img')
+				->field('h.id,h.title,h.summary,h.create_time,h.vip_id,h.heading_img')
 				->order('create_time desc')
-				->paginate(4);
+				->paginate(3);
 		return json($list);
 
 	}

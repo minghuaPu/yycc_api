@@ -66,7 +66,7 @@ class Smalltalk extends \think\Controller
 
     public function save()
     {
-          $hdp_img = request()->file("smalltalk_img");
+        $hdp_img = request()->file("smalltalk_img");
         $smalltalk_img =  '';
         if ($hdp_img) {
            // 如果有上传图片
@@ -149,18 +149,33 @@ class Smalltalk extends \think\Controller
     public function add_edit_audio()
     {
         if ($_POST) {
-            
+              $hdp_img = request()->file("audio");
+                $audio_info =  '';
+                if ($hdp_img) {
+                   // 如果有上传图片
+                   // 那么就保存
+                   $pic_object  = $hdp_img->move("uploads");
+                  // $pic_type = $pic_object->getExtension();//文件的后缀
+                   $audio_info = "./uploads/".str_replace('\\', '/', $pic_object->getSaveName());
+         
+                }
             if ($_POST['xiaojie_id']>0) {
                 // 修改
+                if (empty($audio_info)) {
+                    $audio_info = input('old_audio_info');
+                }
                 db('smalltalk_audio')->update([
                     "audio_name"=>input('audio_name'),
+                    "audio"=>$audio_info,
                     "smalltalk_content_id"=>input('mulu_id'),
                     "id"=>input('xiaojie_id')
                 ]);
             }else{
+              
                 // 添加
                 db("smalltalk_audio")->insert([
                     "audio_name"=>input('audio_name'),
+                    "audio"=>$audio_info,
                     "smalltalk_content_id"=>input('mulu_id')
                 ]);
             }
@@ -169,7 +184,7 @@ class Smalltalk extends \think\Controller
             
         }else{
             $id = input('id');
-            $info = [];
+            $info = null;
             if ($id>0) {
                $info =  db('smalltalk_audio')->where("id=$id")->find();
 

@@ -135,7 +135,7 @@ class Homework extends \think\Controller
 		    $s2 = explode(',', $s1,1);
 			foreach ($s2 as $key => $v) {
 				print_r($v);
-				}
+				
 			}	
 			exit();
 		return json($list);

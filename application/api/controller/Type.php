@@ -11,7 +11,7 @@ class type extends \think\Controller
 	{
 		 $type_id = db("type")
 		 ->alias('t')
-		 ->field('t.id,t.cate_type,t.re,s.smalltalk_img,s.price,s.join_num,s.ke_type,v.real_name')
+		 ->field('t.id,t.cate_type,t.re,s.smalltalk_img,s.price,s.join_num,s.ke_type,v.real_name,s.title')
 		 ->join('smalltalk s','s.ke_type = t.id','left')
 		 ->join('vip v','v.id = s.vip_id')
 
@@ -27,6 +27,7 @@ class type extends \think\Controller
 		 	$s['real_name']=$value['real_name'];
 		 	$s['smalltalk_img']=$value['smalltalk_img'];
 		 	$s['price']=$value['price'];
+		 	$s['title']=$value['title'];
 		 	$s['join_num']=$value['join_num'];
 		 	if(empty($list[$value['id']])){
 		 		$list[$value['id']] = $t;

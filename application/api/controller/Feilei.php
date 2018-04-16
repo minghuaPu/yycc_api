@@ -1,7 +1,7 @@
 <?php
 namespace app\api\controller;
 
-class Kecheng extends \think\Controller
+class Feilei extends \think\Controller
 {
 	
 	function index()
@@ -23,8 +23,8 @@ class Kecheng extends \think\Controller
 			->paginate(4);
 		return json($list);
 	}
-	function getKeCate(){
-		$cate_list = db('smalltalk_cate')->limit(4)->select();
+	function getFeilei(){
+		$cate_list = db('smalltalk_cate')->select();
 
 		return json($cate_list);
 	}

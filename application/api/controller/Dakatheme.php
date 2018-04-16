@@ -29,11 +29,10 @@ class Dakatheme extends \think\Controller
 		$id=input('id');
 		$xinxi=db('daka_theme')
 				->alias('dt')
-				->field('dt.endTime,dt.starTime,dt.imgpath,dt.theme,dt.xiangqin,count(d.id) num,u.user_name,u.head_img')
+				->field('dt.endTime,dt.starTime,dt.imgpath,dt.theme,dt.xiangqin,count(d.id) num')
 				
-				->join('daka d','dt.id = d.theme_id')
-				->join('user u','d.uid = u.id','left')
-				->where("dt.id = '$id' and d.uid = '$uid'")
+				->join('daka d','dt.id = d.theme_id','left')
+				->where("dt.id = '$id' ")
 				->find();
 
 		$sTime= date('Y-m-d H:i:s',$xinxi['starTime']);

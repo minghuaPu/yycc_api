@@ -262,7 +262,7 @@ table td{
                                 </li>
 
                                 <li class="nav-item <?php echo  is_active('smalltalk','active open');?>
-                                    <?php echo  is_active('special','active open');?>
+                                    <?php echo  is_active('special','active open');?>  <?php echo  is_active('smallcate','active open');?>
                                     ">
                                     <a href="{:url('smalltalk/index')}" class="nav-link nav-toggle">
                                         <i class="icon-disc"></i>
@@ -274,6 +274,12 @@ table td{
                                             <a href="{:url('smalltalk/index')}" class="nav-link ">
                                                 <i class="icon-bar-chart"></i>
                                                 <span class="title">课程管理</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item start ">
+                                            <a href="{:url('smallcate/index')}" class="nav-link ">
+                                                <i class="icon-bar-chart"></i>
+                                                <span class="title">课程分类</span>
                                             </a>
                                         </li>
                                         <li class="nav-item <?php echo  is_active('special','active');?>
