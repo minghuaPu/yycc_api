@@ -2,6 +2,7 @@
 namespace app\api\controller;
 use \think\Session;
 use \think\captcha\Captcha;
+use app\api\logic\CreditLogic;
 
 class User extends \think\Controller
 {
@@ -15,6 +16,10 @@ class User extends \think\Controller
             $phoneCap = input('phoneCap');
 
             if(db('cap')->where("phone='$phone'")->value('cap') == $phoneCap){
+                // 登录返积分
+                 $creditLogic = new CreditLogic();
+                 $creditLogic->setCredit(1);
+
                 return 1;
             }else{
                 return 0;
@@ -98,6 +103,8 @@ class User extends \think\Controller
 				->field('id,user_name,phone')
 				->where("user_name='$user_name' and user_pwd=$user_pwd")
 				->find();
+
+
 			return json($list);
         }
 		
