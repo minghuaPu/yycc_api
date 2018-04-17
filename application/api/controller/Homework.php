@@ -18,9 +18,9 @@ class Homework extends \think\Controller
 		$tc_duoxuan = input('tc_duoxuan');
 		$tc_panduan = input('tc_panduan');
 		$tc_tiankong = input('tc_tiankong');
-		$tc_id = 1;
+		$tc_id = input('tc_id');
 
-		 db('homework')->insert([
+		$id =  db('homework')->insertGetId([
 		 	'tc_id'=>$tc_id,
 		 	'tc_content1'=>$tc_content1,
 		 	'tc_content2'=>$tc_content2,
@@ -31,10 +31,7 @@ class Homework extends \think\Controller
 		 ]);
 
 
-		return json([
-				"status"=>1,
-				"msg"=>"保存成功"
-			]);
+		return json($id);
 	}
 
 	//homework_addedit 跳转
@@ -56,19 +53,21 @@ class Homework extends \think\Controller
 		$tc_duoxuan = input('tc_duoxuan');
 		$tc_panduan = input('tc_panduan');
 		$tc_tiankong = input('tc_tiankong');
-		$tc_id = 1;
 
 		 db('homework')->where('id='.input('id'))->update([
-		 	'tc_id'=>$tc_id,
-		 	'tc_content1'=>$tc_content1,
-		 	'tc_content2'=>$tc_content2,
-		 	'tc_danxuan'=>$tc_danxuan,
-		 	'tc_duoxuan'=>$tc_duoxuan,
-		 	'tc_panduan'=>$tc_panduan,
-		 	'tc_tiankong'=>$tc_tiankong,
+		 	'tc_content1' => $tc_content1,
+		 	'tc_content2' => $tc_content2,
+		 	'tc_danxuan' => $tc_danxuan,
+		 	'tc_duoxuan' => $tc_duoxuan,
+		 	'tc_panduan' => $tc_panduan,
+		 	'tc_tiankong' => $tc_tiankong,
 		 ]);
 	}
 
+	function rel_banji(){
+		$lists = db('banji')->select();
+		return json($lists);
+	}
 
 	//homework_rel 保存
 	function rel_save()
@@ -78,15 +77,17 @@ class Homework extends \think\Controller
 		$s_time = input('s_time');
 		$e_time = input('e_time');
 		$homework_add_id = input('homework_add_id');
-		$tc_id = 1;
+		$tc_id = input('tc_id');
+		$banji = input('banji');
 
 		 db('homework_rel')->insert([
 		 	'tc_id'=>$tc_id,
+		 	'banji'=>$banji,
 		 	'tc_title'=>$tc_title,
 		 	'now_time'=>$now_time,
 		 	's_time'=>$s_time,
 		 	'e_time'=>$e_time,
-		 	'homework_add_id'=>$homework_add_id,
+		 	'homework_add_id'=>str_replace(['[',']'], ['',''], $homework_add_id),
 		 ]);
 
 		return json([
@@ -98,7 +99,7 @@ class Homework extends \think\Controller
 	//发布的内容信息返回
 	function hw_rel_find()
 	{
-		$tc_id=1;
+		$tc_id=input('tc_id');
 		$info_list = db("homework")
 						->where("tc_id = $tc_id")
 						->order('id desc')
@@ -121,23 +122,23 @@ class Homework extends \think\Controller
 	//homework_tcinfo
 	function tcinfo_index()
 	{
-		$tc_id = 1;
+		$tc_id = input('tc_id');
 		
 		$list = db("homework_rel")
+			->alias('rel')
+			->field('rel.*,bj.id,bj.banji_name')
+			->join('banji bj','rel.banji = bj.id',"left")
 			->where("tc_id = $tc_id")
 			->select();
-		//explode(',', $str, 2)
 		foreach ($list as $key => $value) {
+			$list[$key]['hwk_list'] = db("homework")
+				->where("id in( ".$value['homework_add_id'].")")
+				->select();
+			foreach ($list[$key]['hwk_list'] as $k => $value) {
 
-			$s = substr($value['homework_add_id'],1);
-			$s1 = rtrim($s,"]");
-			
-		    $s2 = explode(',', $s1,1);
-			foreach ($s2 as $key => $v) {
-				print_r($v);
-				
-			}	
-			exit();
+				$list[$key]['hwk_list'][$k]['tc_content1'] = strip_tags($value['tc_content1']) ;//php过滤html标签 	
+				}				
+			}	 
 		return json($list);
 	}
 
