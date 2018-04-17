@@ -34,6 +34,7 @@ class Mobilehdp extends \think\Controller
         }
         db('mobilehdp')->insert([
             "cate" => $cate,
+            "link_url" => input('link_url'),
             "pic_path" => $pic_path,
         ]);
         $this->success("幻灯片添加成功",url("index"));
@@ -63,6 +64,7 @@ class Mobilehdp extends \think\Controller
         db('mobilehdp')->update([
             "id" => input('id'),
             "cate" => $cate,
+            "link_url" => input('link_url'),
             "pic_path" => $pic_path,
         ]);
         $this->success("幻灯片更新成功",url("index"));
