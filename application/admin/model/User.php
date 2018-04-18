@@ -64,6 +64,7 @@ class User extends \think\Model{
 
 		$user_list = db('user')
 					->where($searchParam['query'])
+					->order('id desc')
 					->paginate(8,false,$pageParam);
 
 		return $user_list;
