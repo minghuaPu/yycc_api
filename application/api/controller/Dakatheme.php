@@ -32,27 +32,16 @@ class Dakatheme extends \think\Controller
 				->field('dt.endTime,dt.starTime,dt.imgpath,dt.theme,dt.xiangqin,count(d.id) num')
 				
 				->join('daka d','dt.id = d.theme_id','left')
-				->where("dt.id = '$id' ")
+				->where("dt.id = '$id'   ")
+				->order('d.id desc')
 				->find();
 
 		$sTime= date('Y-m-d H:i:s',$xinxi['starTime']);
 		$eTime= date('Y-m-d H:i:s',$xinxi['endTime']);
-		// $_Y=  date('Y',$xinxi['endTime'])- date('Y',$xinxi['starTime']);
-		// $_m= date('m',$xinxi['endTime'])- date('m',$xinxi['starTime']);
-		// $_d= date('d',$xinxi['endTime'])- date('d',$xinxi['starTime']);
-		// $_H= date('H',$xinxi['endTime'])- date('H',$xinxi['starTime']);
-		// $_i= date('i',$xinxi['endTime'])- date('i',$xinxi['starTime']);
-		// $_s= date('s',$xinxi['endTime'])- date('s',$xinxi['starTime']);
-		// $_Y1= date('Y',$xinxi['endTime'])- date('Y',time());
-		// $_m1= date('m',$xinxi['endTime'])- date('m',time());
-		// $_d1= date('d',$xinxi['endTime'])- date('d',time());
-		// $_H1= date('H',$xinxi['endTime'])- date('H',time());
-		// $_i1= date('i',$xinxi['endTime'])- date('i',time());
-		// $_s1= date('s',$xinxi['endTime'])- date('s',time());
-		// exit();
-		// print_r($xinxi);
-		// exit();
-		return json($xinxi);
+		
+		$has_daka_info = db('daka')->field('dakaTime')->order('id desc')->where("uid=$uid")->find();
+
+		return json(['lists'=>$xinxi,'has_daka_info'=>$has_daka_info]);
 	}
 }
 
