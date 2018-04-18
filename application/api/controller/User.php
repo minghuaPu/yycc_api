@@ -3,6 +3,7 @@ namespace app\api\controller;
 use \think\Session;
 use \think\captcha\Captcha;
 use app\api\logic\CreditLogic;
+use app\api\logic\GradeLogic;
 
 class User extends \think\Controller
 {
@@ -14,18 +15,37 @@ class User extends \think\Controller
         if($type == 'login'){
             $phone = input('phone');
             $phoneCap = input('phoneCap');
+            // echo $phoneCap;
+            // exit();
 
             if(db('cap')->where("phone='$phone'")->value('cap') == $phoneCap){
-                // 登录返积分
-                 $creditLogic = new CreditLogic();
-                 $creditLogic->setCredit(1);
 
+                $creditLogic = new CreditLogic();
+                $creditLogic->setCredit($id);
                 return 1;
             }else{
                 return 0;
             }
         }else if($type == 'uhome'){
+            $todaylogic = db('user_credit_log')->where("uid ='$id' and do_type = 'sign' ")->order('add_time desc')->find();
+            if(empty($todaylogic)){
+                $creditLogic = new CreditLogic();
+                $creditLogic->setCredit($id);
+            }else{
+                if(date('Y-m-d',$todaylogic['add_time']) != date('Y-m-d',time())) {
+                    $creditLogic = new CreditLogic();
+                    $creditLogic->setCredit($id);
+                }
+                
+            }
 
+            //等级
+            $gradeLogic = new GradeLogic();
+            $grade = $gradeLogic -> setGrade($id);
+            // print_r($grade);
+            // exit();
+            // $creditLogic = new CreditLogic();
+            // $creditLogic->setCredit($id);
             $info = db('user')->where("id='$id'")->find();
 
             if($info['status']==3){
@@ -38,7 +58,10 @@ class User extends \think\Controller
                 $info['is_real'] = $vip['is_real'];
             }
             
-            return json($info);
+            // print_r(array_merge($info,$grade));
+            // exit();
+            
+            return json(array_merge($info,$grade));
         }else if($type == 'edit'){
             $info = db('user')
                     ->where("id='$id'")
@@ -103,8 +126,6 @@ class User extends \think\Controller
 				->field('id,user_name,phone')
 				->where("user_name='$user_name' and user_pwd=$user_pwd")
 				->find();
-
-
 			return json($list);
         }
 		
