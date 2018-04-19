@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 namespace app\api\controller;
 
 /**
@@ -27,19 +27,21 @@ class Dakatheme extends \think\Controller
 	{
 		$uid=input('uid');
 		$id=input('id');
-		$xinxi=db('daka_theme')
+		if(!empty($id)){
+			$xinxi=db('daka_theme')
 				->alias('dt')
 				->field('dt.endTime,dt.starTime,dt.imgpath,dt.theme,dt.xiangqin,count(d.id) num')
 				
-				->join('daka d','dt.id = d.theme_id','left')
-				->where("dt.id = '$id'   ")
-				->order('d.id desc')
+				->join('daka d','dt.id = d.theme_id')
+				->join('user u','d.uid = u.id','left')
+				->where("dt.id = '$id' and d.uid = '$uid'")
+				->order('d.dakaTime desc')
 				->find();
-
-		$sTime= date('Y-m-d H:i:s',$xinxi['starTime']);
-		$eTime= date('Y-m-d H:i:s',$xinxi['endTime']);
-		
+		}else{
+			$xinxi=db('user')->where("id = $uid")->find();
+		}
 		$has_daka_info = db('daka')->field('dakaTime')->order('id desc')->where("uid=$uid")->find();
+		
 
 		return json(['lists'=>$xinxi,'has_daka_info'=>$has_daka_info]);
 	}

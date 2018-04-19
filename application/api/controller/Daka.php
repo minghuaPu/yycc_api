@@ -1,6 +1,6 @@
 <?php 
 namespace app\api\controller;
-
+use app\api\logic\CreditLogic;
 /**
 * 
 */
@@ -31,11 +31,24 @@ class Daka extends \think\Controller
 					// "question_id"=>$question_id
 				]);
 			 
-			 db('user')->update([
-			 	"id"=>$uid,
+			 db('user')->where("id = '$uid'")->update([
+			 	
 			 	"total_income"=>$income_money,
 			 	"total_profit"=>$profit_money
 			 ]);
+
+
+			$todaylogic = db('user_credit_log')->where("uid ='$uid' and do_type = 'daka'")->order('add_time desc')->find();
+            if(empty($todaylogic)){
+                $creditLogic = new CreditLogic();
+                $creditLogic->setCredit($uid,$type='daka');
+            }else{
+                if(date('Y-m-d',$todaylogic['add_time']) != date('Y-m-d',time())) {
+                    $creditLogic = new CreditLogic();
+                    $creditLogic->setCredit($uid,$type='daka');
+                }
+                
+            }
 			return json([
 				"status"=>1,
 				"msg"=>"打卡成功"
@@ -85,8 +98,7 @@ class Daka extends \think\Controller
 
 				 // print_r($allData);
 
-		return json(
-			["allData"=>$allData]);
+		return json($allData);
 	}
 
 
@@ -94,23 +106,37 @@ class Daka extends \think\Controller
 	//该主题排行榜     缺主题id
 	public function toplist()
 	{
+
+		 /****************tp5中使用原生语句*******************/
+        //query 用于查询 其他的用execute
+
+		 
+		// $sql = 'select *,(@rowNum :=@rowNum+1) as rowNo FROM `fd_daka`,(select (@rowNum :=0)) b ORDER BY fd_daka.dakaTime desc';
+		// $dbnum = db('daka')->query($sql);
+		// print_r($dbnum);
+		// exit();
+		$theme_id = input('theme_id');
 		$allid=db('daka')
+				->where("theme_id = $theme_id ")
 				->group("uid")
 				->count("uid");
 		$toplist =db('daka')
 				  ->alias('d')
-				  ->field('u.user_name,u.head_img,d.uid,count(d.id) c')
+				  ->field('d.uid,count(d.id) c,u.user_name uname,u.head_img')
 				  ->join('user u','u.id = d.uid','left')
+				  ->where("d.theme_id = '$theme_id'")
 				  ->group("d.uid")
 				  ->order('c desc')
 				  ->select();
 		// print_r(json([
 		// 	"allid"=>$allid,
 		// 	"toplist"=>$toplist]));
-		
+		$theme =db('daka_theme')->where("id = '$theme_id'")->field('theme')->find();
 		return json([
 			"allid"=>$allid,
-			"toplist"=>$toplist]);
+			"toplist"=>$toplist,
+			"theme"=>$theme
+		]);
 		// SELECT uid ,count(id)FROM `fd_daka` group by uid;
 	}
 
@@ -119,14 +145,17 @@ class Daka extends \think\Controller
 	public function has()
 	{
 		$uid=input('uid');
+		$theme_id = input('theme_id');
 		// $_count=db('daka')
 		// 		->where("uid ='$uid'")
 		// 		->count();
 		$daka_info= db('daka')
 					->alias('d')
-					->field('u.user_name,u.head_img,count(d.uid) num')
+					->field('u.user_name uname,u.head_img,count(d.uid) num')
 					->join('user u','u.id = d.uid','left')
-					->where("d.uid ='$uid'")
+					->where("d.uid ='$uid' and d.theme_id ='$theme_id'")
+					->order('num desc')
+
 					->select();
 		return json($daka_info);
 	}
