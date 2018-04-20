@@ -1,6 +1,5 @@
-﻿<?php 
+<?php 
 namespace app\api\controller;
-
 /**
 * 
 */
