@@ -54,23 +54,13 @@ class type extends \think\Controller
 						->order('v.listen_num desc')
 						->paginate(8,false,['page'=>$page]);
 			return json($vip_lists);
-			// return json($xuqiu_content);
-		}else if($_p){
-			$vip_lists = db('vip')
-						->alias('v')
-						->field('v.id,v.head_img,v.real_name,v.identity,u.grade')
-						->join('user u','u.id = v.user_id')
-						->order('v.listen_num desc')
-						->paginate(8,false,['page'=>$_p]);
-			return json($vip_lists);
-
 		}else{
 			$vip_lists = db('vip')
 						->alias('v')
 						->field('v.id,v.head_img,v.real_name,v.identity,u.grade')
 						->join('user u','u.id = v.user_id')
 						->order('v.listen_num desc')
-						->paginate(4);
+						->paginate(5,false,['page'=>$_p]);
 			return json($vip_lists);
 		}
 		
