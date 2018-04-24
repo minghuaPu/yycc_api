@@ -89,7 +89,7 @@ class Homeworkstudent extends \think\Controller
 				$result[$key] = '';
 			}
 		} 
-		print_r($s_homework);		
+		 	
 		//1  是对还是错，有没有做
 		//2  是对还是错，有没有做
 		$progress = $jindu/$total_timu_num*100;
