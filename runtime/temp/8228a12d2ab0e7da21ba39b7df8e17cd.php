@@ -1,5 +1,5 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:95:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\index\index.html";i:1522636046;s:97:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\public\header.html";i:1522737701;s:97:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\public\footer.html";i:1522636046;}*/ ?>
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:95:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\index\index.html";i:1522636046;s:97:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\public\header.html";i:1524533482;s:97:"E:\wamp64\www\20180305\fan_da\yiyuan\yycc_api\public/../application/admin\view\public\footer.html";i:1522636046;}*/ ?>
+﻿<!DOCTYPE html>
 <!--[if IE 8]>
 <html lang="en" class="ie8 no-js">
     <![endif]-->
@@ -263,7 +263,7 @@ table td{
                                 </li>
 
                                 <li class="nav-item <?php echo  is_active('smalltalk','active open');?>
-                                    <?php echo  is_active('special','active open');?>
+                                    <?php echo  is_active('special','active open');?>  <?php echo  is_active('smallcate','active open');?>
                                     ">
                                     <a href="<?php echo url('smalltalk/index'); ?>" class="nav-link nav-toggle">
                                         <i class="icon-disc"></i>
@@ -275,6 +275,12 @@ table td{
                                             <a href="<?php echo url('smalltalk/index'); ?>" class="nav-link ">
                                                 <i class="icon-bar-chart"></i>
                                                 <span class="title">课程管理</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item start ">
+                                            <a href="<?php echo url('smallcate/index'); ?>" class="nav-link ">
+                                                <i class="icon-bar-chart"></i>
+                                                <span class="title">课程分类</span>
                                             </a>
                                         </li>
                                         <li class="nav-item <?php echo  is_active('special','active');?>
@@ -318,6 +324,13 @@ table td{
                                         </li>
                                     </ul>                
 
+                                </li>
+<li class="nav-item <?php echo  is_active('dakaTheme ','active');?>
+                                    ">
+                                    <a href="<?php echo url('dakatheme/index'); ?>" classs="nav-link nav-toggle">
+                                        <i class="icon-disc"></i>
+                                        <span class="title">打卡主题管理</span>
+                                    </a>
                                 </li>
 
                                 <li class="nav-item <?php echo  is_active('system','active');?>

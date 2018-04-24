@@ -7,14 +7,27 @@ class Homeworkstudent extends \think\Controller
 	function index()
 	{
 		$uid = input('uid');
-
 		$h_list = db('user')->alias('u')
 			->join('homework_rel r','u.banji_id=r.banji')
-			->join('homework_result res','res.hw_id=r.id','left')
-			
+			->join('homework_result res','res.u_id=u.id and res.hw_id =r.id ','left')
+			->where("u.id = $uid ")
 			->field('r.tc_title,r.now_time,r.s_time,r.e_time,r.homework_add_id,r.id,res.progress')
 			->select();
+
+		if($h_list == null){
+			return json(['status'=>1]);
+		}else{
 			return json($h_list);
+		}
+	}
+
+	public function banji_save(){
+		$banji = input('banji');
+		$id = input('id');
+		$info = db('user')->where("id = $id")->update([
+			"banji_id"=>$banji
+		]);
+		return json(['status'=>2]);
 	}
 
 	public function dex_getlist(){
@@ -88,8 +101,7 @@ class Homeworkstudent extends \think\Controller
 			}else{
 				$result[$key] = '';
 			}
-		} 
-		print_r($s_homework);		
+		} 		
 		//1  是对还是错，有没有做
 		//2  是对还是错，有没有做
 		$progress = $jindu/$total_timu_num*100;
@@ -122,11 +134,40 @@ class Homeworkstudent extends \think\Controller
 
 	public function info_lists()
 	{
-
+		$id=input('id');
 		$lists = db('homework_result')
-			->where("id = ".input('hw_id'))
+			->where("id = $id")
 			->find();
-			$lists['result'] = json_encode(unserialize($lists['result'])) ;
+		$lists['result'] = json_encode(unserialize($lists['result'])) ;
+
+		$info =db('homework_result')->where("hw_id = ".$lists['hw_id'])->select();
+		$xuhao = null;
+		$zhi =[];
+		foreach ($info as $key => $value) {
+			if($value['id'] == $id)
+			{
+				$xuhao=$key+1;
+			}
+			$zhi[$key] = $value['correct'];
+		}
+		
+		$baifenbi =  array_sum($zhi)/count($info);
+		return json(['lists'=>$lists,'xuhao'=>$xuhao,'baifenbi'=>$baifenbi]);
+	}
+
+	public function lists()
+	{
+		$hw_id = input('hw_id');
+
+		$lists = db('homework_rel')
+				->alias('el')
+				->join('homework_result rs','el.id =rs.hw_id')
+				->join('user u','rs.u_id = u.id','left')
+				->where("el.id = $hw_id")
+				->field('el.tc_title,el.now_time,u.user_name,u.head_img,rs.id,rs.time,rs.correct')
+				->order('rs.id')
+				->select();
+
 		return json($lists);
 	}
 	
