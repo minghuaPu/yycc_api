@@ -20,12 +20,17 @@ class GradeLogic extends Model
 		// exit();
 		// $Grade =$this->getGrade($credit);
 		// return $Grade;
-		if($credit <= 40){
+//菜鸟：0----60积分；秀才：60---120分；英才：120---300分；优才：300--999分；通才：1000以上
+		if( 0 < $credit && $credit < 60){
 			$GradeVal ="菜鸟";
-		}else if($credit <= 80){
+		}else if($credit < 120){
 			$GradeVal ="有才";
-		}else if($credit <= 120){
+		}else if($credit < 300){
 			$GradeVal ="英才";
+		}else if($credit < 600){
+			$GradeVal ="优才";
+		}else{
+			$GradeVal ="全才";
 		}
 		// echo $GradeVal;
 		// exit();

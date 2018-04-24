@@ -11,7 +11,7 @@ class type extends \think\Controller
 	{
 		 $type_id = db("type")
 		 ->alias('t')
-		 ->field('t.id,t.cate_type,t.re,s.smalltalk_img,s.price,s.join_num,s.ke_type,v.real_name,s.title')
+		 ->field('t.id,t.cate_type,t.re,s.smalltalk_img,s.price,s.join_num,s.ke_type,v.real_name')
 		 ->join('smalltalk s','s.ke_type = t.id','left')
 		 ->join('vip v','v.id = s.vip_id')
 
@@ -27,7 +27,6 @@ class type extends \think\Controller
 		 	$s['real_name']=$value['real_name'];
 		 	$s['smalltalk_img']=$value['smalltalk_img'];
 		 	$s['price']=$value['price'];
-		 	$s['title']=$value['title'];
 		 	$s['join_num']=$value['join_num'];
 		 	if(empty($list[$value['id']])){
 		 		$list[$value['id']] = $t;
@@ -39,6 +38,34 @@ class type extends \think\Controller
 		 }
 
 		 return json($list);
+	}
+	public function vip_list()
+	{
+		// code...
+		$xuqiu_content = input('textarea');
+		$page = input('current_page');
+		$_p= input('page');
+		if($xuqiu_content){
+			$vip_lists = db('vip')
+						->alias('v')
+						->field('v.id,v.head_img,v.real_name,v.identity')
+						->join('user u','u.id = v.user_id')
+						->where("v.identity like '%$xuqiu_content%'")
+						->order('v.listen_num desc')
+						->paginate(8,false,['page'=>$page]);
+			return json($vip_lists);
+		}else{
+			$vip_lists = db('vip')
+						->alias('v')
+						->field('v.id,v.head_img,v.real_name,v.identity,u.grade')
+						->join('user u','u.id = v.user_id')
+						->order('v.listen_num desc')
+						->paginate(5,false,['page'=>$_p]);
+			return json($vip_lists);
+		}
+		
+
+
 	}
 }
 

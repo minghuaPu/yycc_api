@@ -1,0 +1,41 @@
+{include file="public/header"} 
+
+<div class="mt-3">
+	<a href="{:url('add')}" class="btn btn-info">添加打卡主题</a>
+    <table class="table">
+        <tr>
+            <th>编号</th>
+            <th>主题</th>
+            <th>内容</th>
+            <th>时间</th>
+            <th>操作</th>
+        </tr>
+        {foreach $dakaTheme_list as $value}
+        <tr>
+
+            <td>{$value['id']}</td>
+            <td title="{$value['theme']}">{$value['theme']}</td>
+            <td title="{$value['xiangqin']}">{$value['xiangqin']}</td>
+            <td>
+                <span title="{$value['starTime']}">
+                    <?php echo date('Y/m/d h:s',$value['starTime']) ?>
+                </span>至
+                <span title="{$value['endTime']}">
+                    <?php echo date('Y/m/d h:s',$value['starTime']) ?>
+                </span>
+            </td>
+            <td>
+            	<a href="{:url('edit',['id'=>$value['id']])}" class="btn btn-info">编辑</a>
+                <a href="{:url('delete',['id'=>$value['id']])}" class="btn btn-danger">删除</a>
+            </td>
+        </tr>
+        {/foreach}
+    </table>
+    <div>
+        {$dakaTheme_list->render()}
+    </div>
+</div>
+<script>
+    
+</script>
+{include file="public/footer"}
