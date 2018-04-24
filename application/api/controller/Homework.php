@@ -20,6 +20,7 @@ class Homework extends \think\Controller
 		$tc_tiankong = input('tc_tiankong');
 		$tc_id = input('tc_id');
 
+		//insert(插入信息)  insertGetId(插入信息并返回id)
 		$id =  db('homework')->insertGetId([
 		 	'tc_id'=>$tc_id,
 		 	'tc_content1'=>$tc_content1,
@@ -141,15 +142,6 @@ class Homework extends \think\Controller
 			}	 
 		return json($list);
 	}
-
-	// function tcin_list(){
-	// 	$homework_add_id =input('homework_add_id');
-
-	// 	$list=db('homework')
-	// 		->where("id = $homework_add_id")
-	// 		->find();
-
-	// }
 }
 
 	
