@@ -7,16 +7,22 @@ class Homeworkstudent extends \think\Controller
 	function index()
 	{
 		$uid = input('uid');
+		$banji=db('user')
+				->where("id=$uid")
+				->find();
+			
+		if($banji['banji_id'] == null){
+			return json(['status'=>1]);
+		}else{
+
 		$h_list = db('user')->alias('u')
 			->join('homework_rel r','u.banji_id=r.banji')
 			->join('homework_result res','res.u_id=u.id and res.hw_id =r.id ','left')
 			->where("u.id = $uid ")
 			->field('r.tc_title,r.now_time,r.s_time,r.e_time,r.homework_add_id,r.id,res.progress')
+			->order("r.now_time desc")
 			->select();
 
-		if($h_list == null){
-			return json(['status'=>1]);
-		}else{
 			return json($h_list);
 		}
 	}
