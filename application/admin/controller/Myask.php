@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
 
-class Myask extends \think\Controller
+class Myask extends \app\admin\controller\Auth
 {
     public function index()
     {

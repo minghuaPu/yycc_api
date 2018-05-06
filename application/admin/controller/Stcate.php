@@ -1,7 +1,7 @@
 <?php 
 namespace app\admin\controller;
 
-class Stcate extends \think\Controller
+class Stcate extends \app\admin\controller\Auth
 {
 	
 	// 列表

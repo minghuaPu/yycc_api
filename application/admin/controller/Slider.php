@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
 
-class Slider extends \think\Controller
+class Slider extends \app\admin\controller\Auth
 {
     public function index()
     {

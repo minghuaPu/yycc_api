@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
 
-class Dakatheme extends \think\Controller
+class Dakatheme extends \app\admin\controller\Auth
 {
     public function index()
     {

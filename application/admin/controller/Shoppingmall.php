@@ -3,7 +3,7 @@ namespace app\admin\controller;
 /**
  * 一元商城
  */
-class Shoppingmall extends \think\Controller
+class Shoppingmall extends \app\admin\controller\Auth
 {   //列表
     public function index()
     {

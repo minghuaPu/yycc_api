@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
 
-class Answer extends \think\Controller
+class Answer extends \app\admin\controller\Auth
 {
     public function index()
     {

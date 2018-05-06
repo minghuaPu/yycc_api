@@ -3,7 +3,7 @@ namespace app\admin\controller;
 /**
  * 手机端幻灯片
  */
-class Mobilehdp extends \think\Controller
+class Mobilehdp extends \app\admin\controller\Auth
 {
     public function index()
     {

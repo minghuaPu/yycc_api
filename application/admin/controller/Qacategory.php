@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
 
-class Qacategory extends \think\Controller
+class Qacategory extends \app\admin\controller\Auth
 {
     public function index()
     {

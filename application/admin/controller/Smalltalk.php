@@ -1,7 +1,7 @@
 <?php 
 namespace app\admin\controller;
 
-class Smalltalk extends \think\Controller
+class Smalltalk extends \app\admin\controller\Auth
 {
 	
 	// 列表

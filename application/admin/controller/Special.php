@@ -1,7 +1,7 @@
 <?php 
 namespace app\admin\controller;
 
-class Special extends \think\Controller
+class Special extends \app\admin\controller\Auth
 {
 	
 	// 列表

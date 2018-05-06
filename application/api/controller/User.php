@@ -147,10 +147,11 @@ class User extends \think\Controller
         if($type == 'login'){
             $phone = input('phone');
 
-            $user_id = db('user')->where("phone='$phone'")->value('id');
+            $user = db('user')->where("phone='$phone'")->find();
 
+            $user_id = $user['id'];
             if(!$user_id){
-                db('user')->insert(['phone'=>$phone,'head_img'=>'headbg.png']);
+                db('user')->insert(['phone'=>$phone,'head_img'=>'headbg.png','create_time'=>time()]);
                 $user_id = db('user')->getLastInsID();
             }
 
@@ -162,7 +163,7 @@ class User extends \think\Controller
                 Session::set('vip_id',$vip_id);
             }*/
 
-            return json(['user_id'=>$user_id,'vip_id'=>$vip_id]);
+            return json(['user_id'=>$user_id,'vip_id'=>$vip_id,'is_pay'=>$user['is_pay']]);
         }else if($type == 'edit'){
             $info = json_decode($_POST['info'],true);
             if(isset($_FILES['file'])){

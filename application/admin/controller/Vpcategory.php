@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
 
-class Vpcategory extends \think\Controller
+class Vpcategory extends \app\admin\controller\Auth
 {
     public function index()
     {

@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
 
-class Headline extends \think\Controller
+class Headline extends \app\admin\controller\Auth
 {
     public function index()
     {

@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
 
-class Smallcate extends \think\Controller
+class Smallcate extends \app\admin\controller\Auth
 {
     public function index()
     {

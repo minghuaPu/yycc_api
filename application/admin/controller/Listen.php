@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
 
-class Listen extends \think\Controller
+class Listen extends \app\admin\controller\Auth
 {
     public function index()
     {

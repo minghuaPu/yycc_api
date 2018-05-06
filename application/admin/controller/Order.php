@@ -1,7 +1,7 @@
 <?php 
 namespace app\admin\controller;
 
-class Order extends \think\Controller
+class Order extends \app\admin\controller\Auth
 {
 	
 	// 列表

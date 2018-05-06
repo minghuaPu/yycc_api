@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
 
-class Vip extends \think\Controller
+class Vip extends \app\admin\controller\Auth
 {
     public function index()
     {

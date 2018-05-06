@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
 
-class Quickask extends \think\Controller
+class Quickask extends \app\admin\controller\Auth
 {
     public function index()
     {

@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
 
-class Follow extends \think\Controller
+class Follow extends \app\admin\controller\Auth
 {
     public function index()
     {
