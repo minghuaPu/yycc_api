@@ -15,14 +15,15 @@
         <div class="form-group">
             <p class="tishi" style="display: none;"></p>
             <label >时间</label>
-            <input class="datetimepicker" type="text" name ="starTime" value="<?php echo date('Y/m/d h:s',$dakaTheme['starTime']) ?>">&nbsp;&nbsp;至&nbsp;&nbsp;
-            <input class="datetimepicker" type="text" name="endTime" value="<?php echo date('Y/m/d h:s',$dakaTheme['endTime']) ?>">
+            <input class="datetimepicker" type="text" name ="starTime" value="<?php echo date('Y/m/d H:s',$dakaTheme['starTime']) ?>">&nbsp;&nbsp;至&nbsp;&nbsp;
+            <input class="datetimepicker" type="text" name="endTime" value="<?php echo date('Y/m/d H:s',$dakaTheme['endTime']) ?>">
         </div> 
         <div class="form-group">
             <label >分类图像</label>
             <div class="img" id="cateimg">
                 <img alt="+点击添加图片" class="show-img" src="__PUBLIC__/{$dakaTheme['imgpath']}">
                 <input type="file" name="imgpath">
+                <input type="hidden" name="img" value="{$dakaTheme['imgpath']}">
             </div>
         </div> 
         <div class="form-group">

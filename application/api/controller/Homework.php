@@ -142,6 +142,16 @@ class Homework extends \think\Controller
 			}	 
 		return json($list);
 	}
+
+	public function savePicEditor()
+	{
+        $name = saveAndgetSrc(ROOT_PATH."public/static/api/img/",'file');
+        
+        return json([
+        	'ok'=>true,
+        	'data'=>'static/api/img/'.$name
+        ]);
+	}
 }
 
 	

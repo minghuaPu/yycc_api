@@ -5,7 +5,7 @@ class Dakatheme extends \app\admin\controller\Auth
 {
     public function index()
     {
-        $dakaTheme_list = db('daka_theme')->paginate(8);
+        $dakaTheme_list = db('daka_theme')->order('id desc')->paginate(8);
         // print_r($dakaTheme_list['starTime']);
         // foreach ($dakaTheme_list as $key => $value) {
         //     # code...
@@ -38,8 +38,16 @@ class Dakatheme extends \app\admin\controller\Auth
 
     public function update()
     {
+        if(!empty($_FILES['imgpath']['tmp_name'])){
+            $imgpath = saveAndgetSrc(ROOT_PATH."public/static/api/img/",'imgpath');
+            $imgpath = '/static/api/img/'.$imgpath;
+        }else{
+            $imgpath = input('img');
+        }
+
        db("daka_theme")->where("id =".input('id'))->update([
         "theme"=>input('theme'),
+        "imgpath"=>$imgpath,
         "xiangqin"=>input('xiangqin'),
         "starTime" => strtotime(input('starTime')),
         "endTime" => strtotime(input('endTime'))

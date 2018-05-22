@@ -25,6 +25,8 @@ class User extends \think\Model{
 			'user_name'=>input('user_name'),
 			'total_income'=>input('total_income'),
 			'total_profit'=>input('total_profit'),
+			'is_pay'=>input('is_pay'),
+			'banji_id'=>input('banji_id'),
 			'phone'=>input('phone'),
 			'head_img'=>$head_img
 			]);
@@ -45,6 +47,9 @@ class User extends \think\Model{
 
 		$user_name = input('user_name');
 		$phone = input('phone');
+		$is_pay = input('is_pay');
+
+
 
 		/*if(!$vip_name && !$vip_cate && !$floor_price && !$ceil_price){
 			return db('vip')->paginate(8);
@@ -62,10 +67,15 @@ class User extends \think\Model{
 			$pageParam['query']['phone'] = $phone;
 		}
 
+		if ($is_pay>0) {
+			$searchParam['query']['is_pay'] = $is_pay;
+			$pageParam['query']['is_pay'] = $is_pay;
+			
+		}
 		$user_list = db('user')
 					->where($searchParam['query'])
 					->order('id desc')
-					->paginate(8,false,$pageParam);
+					->paginate(10,false,$pageParam);
 
 		return $user_list;
 	}

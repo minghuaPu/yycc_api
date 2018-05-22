@@ -36,7 +36,7 @@ class Weixin extends \think\Controller
  
         if ($uid>0) {
             if ( $_SESSION['jidi']) {
-                db('user_jidi')->where("id=$uid")->update(['is_pay'=>1,'out_trade_no'=>$params['out_trade_no']]);
+                db('user_jidi')->where("uid=$uid")->update(['is_pay'=>1,'out_trade_no'=>$params['out_trade_no']]);
                 $order_type = 2;
             }else{
                 db('user')->where("id=$uid")->update(['is_pay'=>1,'out_trade_no'=>$params['out_trade_no']]);
@@ -46,6 +46,7 @@ class Weixin extends \think\Controller
               db('order')->insert(
                 [
                     'is_pay'=>1,
+                    'uid'=>$uid,
                     'add_time'=>time(),
                     'order_type'=>  $order_type,
                     'out_trade_no'=>$params['out_trade_no']

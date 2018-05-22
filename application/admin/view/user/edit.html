@@ -24,6 +24,25 @@
             <input type="text" class="form-control" name="total_profit"
             value="{$user_info['total_profit']}">
         </div>  
+
+        <div class="form-group">
+            <label >开通状态</label>
+             <select name="is_pay" id="">
+                 <option value="">请选择</option>
+                 {foreach $kt_status as $key=>$val}
+                    <option {if $user_info['is_pay'] == $key} selected {/if} value="{$key}">{$val}</option>
+                 {/foreach}
+             </select>
+        </div> 
+        <div class="form-group">
+            <label >所属班级</label>
+             <select name="banji_id" id="">
+                 <option value="">请选择</option>
+                 {foreach $banji as $val}
+                    <option {if $user_info['banji_id'] == $val.id} selected {/if} value="{$val.id}">{$val.banji_name}</option>
+                 {/foreach}
+             </select>
+        </div> 
         <div class="form-group">
             <label >用户头像</label>
             <div class="img" id="userimg">

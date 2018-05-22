@@ -57,8 +57,21 @@ function getFileType($str){
 	// video/mp4
 
 	list($file_type,$file_ext) = explode('/', $str);
-
 	return $file_ext;
 
+}
+
+function user_kaitong_status()
+{
+	return [
+		0=>'未支付',
+		1=>'打算支付',
+		2=>'已支付'
+	];
+}
+
+function get_banji()
+{
+	return db('banji')->select();
 }
 ?>

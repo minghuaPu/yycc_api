@@ -80,9 +80,9 @@ class Notify extends \WxPayNotify
         // 处理成功, 返回true, 处理失败, 返回false
         // 例如:
         if ($order['order_type'] == 2) {
-             $result = db('user_jidi')->where('out_trade_no', $order['out_trade_no'])->update(['is_pay'=>2]);
+             $result = db('user_jidi')->where('uid', $order['uid'])->update(['is_pay'=>2]);
         }else{
-             $result = db('user')->where('out_trade_no', $order['out_trade_no'])->update(['is_pay'=>2]);
+             $result = db('user')->where('id', $order['uid'])->update(['is_pay'=>2]);
         }
        db('order')->where('out_trade_no', $order['out_trade_no'])->update(['is_pay'=>2]);
         return $result;

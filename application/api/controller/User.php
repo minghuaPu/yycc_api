@@ -200,6 +200,17 @@ class User extends \think\Controller
             db('user')->where("id='$id'")->setField('phone',$phone);
         }
     }
+
+    public function tx()
+    {
+        $name = saveAndgetSrc(ROOT_PATH."public/static/api/img/",'file');
+        if (input('uid')) {
+             db('user')->where("id=".input('uid'))->update(['head_img'=>$name]);
+             db('vip')->where("user_id=".input('uid'))->update(['head_img'=>$name]);
+        }
+        
+        return $name;
+    }
 	
 }
 
