@@ -7,7 +7,7 @@ class Homework extends \app\admin\controller\Auth
 	// 题目列表
 	 public function index()
     {
-    	$homework_list = db('homework')->paginate(5);
+    	$homework_list = db('homework')->paginate(20);
     	$this->assign("homework_list",$homework_list); 
         return $this->fetch();
     }

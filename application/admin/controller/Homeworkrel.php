@@ -7,7 +7,7 @@ class homeworkrel extends \app\admin\controller\Auth
 	// 题目列表
 	 public function index()
     {
-    	$homework_rel_list = db('homework_rel')->paginate(5);
+    	$homework_rel_list = db('homework_rel')->paginate(20);
     	$this->assign("homework_rel_list",$homework_rel_list); 
         return $this->fetch();
     }
