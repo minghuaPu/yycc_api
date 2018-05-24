@@ -21,13 +21,14 @@ class User extends \think\Model{
         }else{
             $head_img = input('img');
         }
+
 		db('user')->where('id='.input('id'))->update([
 			'user_name'=>input('user_name'),
 			'total_income'=>input('total_income'),
 			'total_profit'=>input('total_profit'),
+			'phone'=>input('phone'),
 			'is_pay'=>input('is_pay'),
 			'banji_id'=>input('banji_id'),
-			'phone'=>input('phone'),
 			'head_img'=>$head_img
 			]);
 	}

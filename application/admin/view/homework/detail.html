@@ -2,43 +2,45 @@
 
 <div class="self-container mt-3">
     <h3>题目编辑页</h3>
+    <p></p><p></p>
      <form action="{:url('update_timu')}" method="post" enctype="multipart/form-data">
          <input type="text" class="form-control" name="id" value="{$homework_list_one['id']}" style="display: none;">
         <div class="form-group">
-            <label >老师编号</label>
-            <input type="text" class="form-control" name="tc_id" value="{$homework_list_one['tc_id']}">
+            <strong>老师编号</strong>
+            <div>{$homework_list_one['tc_id']}</div>
+           <div></div>
         </div>
         <div class="form-group">
-            <label >作业题目</label>
-            <input type="text" class="form-control" name="work_name" value="{$homework_list_one['work_name']}">
+            <strong>作业题目</strong>
+            <div>{$homework_list_one['work_name']}</div>  
         </div>          
         <div class="form-group">
-            <label >作业问题</label>
-            <input type="text" class="form-control" name="work_require" value="{$homework_list_one['work_require']}">
+            <strong>作业问题</strong>
+            <div>{$homework_list_one['work_require']}</div>    
         </div> 
         <div class="form-group">
-            <label >题目内容</label>
-            <textarea  name="tc_content1" style="width:100%">{$homework_list_one['tc_content1']}</textarea>
+            <strong>题目内容</strong>
+           <div> {$homework_list_one['tc_content1']}</div>  
         </div> 
         <div class="form-group">
-            <label >结答题答案</label>
-            <textarea  name="tc_content2" style="width:100%">{$homework_list_one['tc_content2']}</textarea>
+            <strong>结答题答案</strong>
+            <div>{$homework_list_one['tc_content2']}</div>  
         </div> 
         <div class="form-group">
-            <label >单选题答案</label>
-            <input type="text" class="form-control" name="tc_danxuan" value="{$homework_list_one['tc_danxuan']}">
+            <strong>单选题答案</strong>
+         <div>{$homework_list_one['tc_danxuan']}</div>  
         </div> 
         <div class="form-group">
-            <label >多选题答案</label>
-            <input type="text" class="form-control" name="tc_duoxuan" value="{$homework_list_one['tc_duoxuan']}">
+            <strong>多选题答案</strong>
+            <div>{$homework_list_one['tc_duoxuan']}</div>  
         </div> 
         <div class="form-group">
-            <label >判断题答案</label>
-            <input type="text" class="form-control" name="tc_panduan" value="{$homework_list_one['tc_panduan']}">
+            <strong>判断题答案</strong>
+        <div>{$homework_list_one['tc_panduan']}</div>  
         </div> 
         <div class="form-group">
-            <label >填空题答案</label>
-            <input type="text" class="form-control" name="tc_tiankong" value="{$homework_list_one['tc_tiankong']}">
+            <strong>填空题答案</strong>
+        <div>{$homework_list_one['tc_tiankong']}</div>  
         </div> 
         <div class="form-group">
             <a class="btn btn-default" href="{:url('index')}" role="button">返回</a>

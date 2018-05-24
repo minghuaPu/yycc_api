@@ -47,9 +47,7 @@ class homeworkresult extends \app\admin\controller\Auth
      public function detail()
     {
          $homeworkresult_list_one=model('Homeworkresult')->detailhomeworkresult();
-
-         $homeworkresult_list_one['result'] =  implode(',',unserialize($homeworkresult_list_one['result']) ) ;
-
+        $homeworkresult_list_one['result']=implode(',', unserialize($homeworkresult_list_one['result']));
          $username=db('user')->where("id=".$homeworkresult_list_one['u_id'])->field('user_name')->select();
          $title=db('homework_rel')->where("id=".$homeworkresult_list_one['hw_id'])->field('tc_title')->select();
          

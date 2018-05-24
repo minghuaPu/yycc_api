@@ -7,11 +7,10 @@ class User extends \app\admin\controller\Auth
     {
         $user_list = model('User')->getUserList();
         $this->assign('user_list', $user_list);
-
         $this->assign('user_name', input('user_name'));
         $this->assign('phone', input('phone'));
-
         $this->assign('kt_status',user_kaitong_status());
+        $this->assign('banji',get_banji());
         return $this->fetch();
     }
 
@@ -24,7 +23,6 @@ class User extends \app\admin\controller\Auth
     {   
         $user_info = model('User')->getUserInfo();
         $this->assign('user_info',$user_info);
-
         $this->assign('kt_status',user_kaitong_status());
         $this->assign('banji',get_banji());
         return $this->fetch();

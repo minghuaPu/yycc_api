@@ -5,7 +5,7 @@ class Dakatheme extends \app\admin\controller\Auth
 {
     public function index()
     {
-        $dakaTheme_list = db('daka_theme')->order('id desc')->paginate(8);
+        $dakaTheme_list = db('daka_theme')->paginate(8);
         // print_r($dakaTheme_list['starTime']);
         // foreach ($dakaTheme_list as $key => $value) {
         //     # code...

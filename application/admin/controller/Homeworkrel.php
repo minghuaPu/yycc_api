@@ -47,11 +47,8 @@ class homeworkrel extends \app\admin\controller\Auth
     public function detail()
     {
         $homeworkrel_list_one=model('homeworkrel')->detailhomeworkrel();
-
         $banji=db('banji')->where("id=".$homeworkrel_list_one['banji'])->find();
-
         $homework=db('homework')->where("id in (".$homeworkrel_list_one['homework_add_id'].")")->field('tc_content1')->select();
-        
         //print_r($homework);
         $this->assign("homeworkrel_list_one",$homeworkrel_list_one);
         $this->assign("banji", $banji);
