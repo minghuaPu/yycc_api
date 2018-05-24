@@ -122,7 +122,7 @@ class Daka extends \think\Controller
 				->count("uid");
 		$toplist =db('daka')
 				  ->alias('d')
-				  ->field('d.uid,count(d.id) c,u.user_name uname,u.head_img')
+				  ->field('d.uid,count(d.id) c,u.user_name uname,u.user_name,u.head_img')
 				  ->join('user u','u.id = d.uid','left')
 				  ->where("d.theme_id = '$theme_id'")
 				  ->group("d.uid")

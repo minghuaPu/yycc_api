@@ -213,6 +213,33 @@ table td{
                                         <span class="title">提问管理</span>
                                     </a>
                                 </li>
+                                 <li class="nav-item <?php echo is_active('homework','active open');?>  <?php echo  is_active('homeworkrel','active open');?>  <?php echo  is_active('homeworkresult','active open');?>">
+                                    <a href="{:url('homework/index')}" class="nav-link nav-toggle">
+                                        <i class="icon-disc"></i>
+                                        <span class="title">作业管理</span>
+                                        <span class="arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu" >
+                                        <li class="nav-item start ">
+                                            <a href="{:url('homework/index')}" class="nav-link ">
+                                                <i class="icon-bar-chart"></i>
+                                                <span class="title">作业题目管理</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item start ">
+                                            <a href="{:url('homeworkrel/index')}" class="nav-link ">
+                                                <i class="icon-bar-chart"></i>
+                                                <span class="title">作业任务管理</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item start ">
+                                            <a href="{:url('homeworkresult/index')}" class="nav-link ">
+                                                <i class="icon-bar-chart"></i>
+                                                <span class="title">作业提交管理</span>
+                                            </a>
+                                        </li>                                                                               
+                                    </ul>                
+                                </li>
                                 <li class="nav-item <?php echo  is_active('listen','active');?>
                                     ">
                                     <a href="{:url('listen/index')}" class="nav-link nav-toggle">

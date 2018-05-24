@@ -1,0 +1,81 @@
+{include file="public/header"} 
+
+<div class="self-container mt-3">
+    <h3>提交作业更改页</h3>
+     <form action="{:url('update')}" method="post" enctype="multipart/form-data">  
+       <input type="text" class="form-control" name="id" value="{$homeworkresult_list_one['id']}" style="display: none;">
+        <div class="form-group">
+            <label >用户编号</label>
+            <input type="text" class="form-control" name="u_id" value="{$homeworkresult_list_one['u_id']}">
+        </div>
+        <div class="form-group">
+            <label >作业编号</label>
+            <input type="text" class="form-control" name="hw_id" value="{$homeworkresult_list_one['hw_id']}">
+        </div>          
+        <div class="form-group">
+            <label >提交时间</label>
+            <input type="text" class="datetimepicker" name="time" value="{$homeworkresult_list_one['time']|date="Y-m-d H:i",###}">
+        </div> 
+         <div class="form-group">
+            <label >老师回复</label>
+          <textarea  name="reply" style="width:100%">{$homeworkresult_list_one['reply']}</textarea>
+        </div> 
+        <div class="form-group">
+            <label >完成程度</label>
+            <input type="text" class="form-control" name="progress" value="{$homeworkresult_list_one['progress']}">
+        </div> 
+        <div class="form-group">
+            <label >完成时长</label>
+            <input type="text" class="form-control" name="hao_time" value="{$homeworkresult_list_one['hao_time']}">
+        </div> 
+        <div class="form-group">
+            <label >正确率</label>
+            <input type="text" class="form-control" name="correct" value="{$homeworkresult_list_one['correct']}">
+        </div> 
+        <div class="form-group">
+            <label >学生答案</label>
+            <textarea  name="s_homework" style="width:100%"> {$homeworkresult_list_one['s_homework']}</textarea>   
+        </div> 
+        <div class="form-group">
+            <p class="tishi" style="display: none;"></p>
+            <label >正确答案</label>
+             <textarea  name="result" style="width:100%">{$homeworkresult_list_one['result']}</textarea>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-info" value="提交">
+        </div>
+     </form>
+</div>
+
+
+<script type="text/javascript" src="__PUBLIC__/static/admin/jquery.datetimepicker.full.js"></script>
+
+<link rel="stylesheet" href="__PUBLIC__/static/admin/jquery.datetimepicker.css">
+
+<script type="text/javascript">
+<!-- 实例化编辑器 -->
+
+    $.datetimepicker.setLocale('ch');
+    $('.datetimepicker').datetimepicker();
+$(function(){
+    var starTime =''
+    $('[name=starTime]').on('blur',function(){
+        var result = $(this).val();
+        var starTime = Date.parse(result)/1000
+        return starTime
+    })
+    console.log(starTime)
+    var endTime = $('[name=endTime]').on('blur',function(){
+        var result = $(this).val();
+        var endTimme = Date.parse(result)/1000
+        return endTimme
+    })
+    
+
+})
+
+    
+   
+
+</script>
+{include file="public/footer"}

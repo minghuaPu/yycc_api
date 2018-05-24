@@ -1,0 +1,31 @@
+{include file='public/header'}
+<div class="row">
+    <a href="{:url('add')}" class="btn btn-info">添加作业</a>
+</div>
+<table class="table">
+    <tr>
+        <th>题目编号</th>
+        <th>老师编号</th>
+        <th>作业名称</th>
+        <th>结束时间</th>
+        <th>班级编号</th>
+        <th style="width:200px!important;">操作</th>
+    </tr>
+    {foreach $homework_rel_list as $value}
+    <tr>
+        <td>{$value['homework_add_id']}</td>
+        <td>{$value['tc_id']}</td>
+        <td>{$value['tc_title']}</td>
+        <td>{$value['e_time']|date="Y-m-d H:i",###}</td>
+        <td>{$value['banji']}</td>
+        <td>
+            <a href="{:url('edit',['id'=>$value['id']])}" class="btn btn-info">编辑</a>
+            <a href="{:url('del',['id'=>$value['id']])}" class="btn btn-danger">删除</a>
+            <a href="{:url('detail',['id'=>$value['id']])}" class="btn btn-info">详细</a>
+        </td>
+    </tr>
+    {/foreach}
+    
+</table> <div>{$homework_rel_list->render()}</div>
+<div></div>
+{include file='public/footer'}

@@ -1,0 +1,48 @@
+{include file="public/header"} 
+
+<div class="self-container mt-3">
+    <h3>题目添加页</h3>
+     <form action="{:url('save_timu')}" method="post" enctype="multipart/form-data">  
+        <div class="form-group">
+            <label >老师编号</label>
+            <input type="text" class="form-control" name="tc_id">
+        </div>
+        <div class="form-group">
+            <label >作业题目</label>
+            <input type="text" class="form-control" name="work_name">
+        </div>          
+        <div class="form-group">
+            <label >作业问题</label>
+            <input type="text" class="form-control" name="work_require">
+        </div> 
+        <div class="form-group">
+            <label >题目内容</label>
+            <textarea  name="tc_content1" style="width:100%"></textarea>
+        </div> 
+        <div class="form-group">
+            <label >结答题答案</label>
+            <textarea  name="tc_content2" style="width:100%"></textarea>
+        </div> 
+        <div class="form-group">
+            <label >单选题答案</label>
+            <input type="text" class="form-control" name="tc_danxuan">
+        </div> 
+        <div class="form-group">
+            <label >多选题答案</label>
+            <input type="text" class="form-control" name="tc_duoxuan">
+        </div> 
+        <div class="form-group">
+            <label >判断题答案</label>
+            <input type="text" class="form-control" name="tc_duoxuan">
+        </div> 
+        <div class="form-group">
+            <label >填空题答案</label>
+            <input type="text" class="form-control" name="tc_tiankong">
+        </div> 
+        <div class="form-group">
+            <input type="submit" class="btn btn-info" value="添加">
+        </div>
+     </form>
+</div>
+
+{include file="public/footer"}
