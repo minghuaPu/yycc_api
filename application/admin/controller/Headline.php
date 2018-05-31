@@ -7,9 +7,9 @@ class Headline extends \app\admin\controller\Auth
     {
         $real_name = input('real_name');
         $where = '';
-        if($real_name){
-            $where = "real_name like '%$real_name%'";
-        }
+             if($real_name){
+                       $where = "real_name like '%$real_name%'";
+             }
         $headline_list = db('headline')
                     ->alias('h')
                     ->join('vip v','v.id=h.vip_id')
@@ -22,6 +22,7 @@ class Headline extends \app\admin\controller\Auth
 
     	$this->assign('headline_list',$headline_list);
         return $this->fetch();
+        
     }
 
     public function delete()

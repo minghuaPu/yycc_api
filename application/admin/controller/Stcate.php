@@ -7,6 +7,7 @@ class Stcate extends \app\admin\controller\Auth
 	// 列表
 	 public function index()
     {
+
     	// 查询列表
     	$cate_list = db("smalltalk_cate")
                         ->field('id,cate_name')

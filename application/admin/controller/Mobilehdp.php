@@ -1,5 +1,6 @@
 <?php
 namespace app\admin\controller;
+
 /**
  * 手机端幻灯片
  */

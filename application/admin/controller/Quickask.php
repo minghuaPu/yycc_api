@@ -5,6 +5,7 @@ class Quickask extends \app\admin\controller\Auth
 {
     public function index()
     {
+
         $user_name = input('user_name');
         $where = '';
         if($user_name){

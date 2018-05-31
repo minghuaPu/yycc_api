@@ -5,6 +5,7 @@ class Slider extends \app\admin\controller\Auth
 {
     public function index()
     {
+
         $slider_list = db('slider')->paginate(8);
 
         $this->assign('slider_list', $slider_list);

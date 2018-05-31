@@ -5,6 +5,7 @@ class Follow extends \app\admin\controller\Auth
 {
     public function index()
     {
+
         $vplisten_list = db('vip_listen')
                     ->alias('vl')
                     ->join('user u','u.id=vl.user_id')
@@ -14,6 +15,7 @@ class Follow extends \app\admin\controller\Auth
 
     	$this->assign('vplisten_list',$vplisten_list);
         return $this->fetch();
+        
     }
 
     public function delete()

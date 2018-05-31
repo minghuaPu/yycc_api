@@ -28,28 +28,42 @@ class Login extends \think\Controller
 
     public function go()
     {
+        $admin_n=db('admin')->field('login_name')->select();
+        $admin_na=array();
+        foreach($admin_n as $key=>$value){$admin_na[]=$value['login_name'];}        
     	  // 第一步：验证 马是否一样
         $captcha = new Captcha();
-        // check:校验验证码是否一样，返回boolean。成功后则会删除之前验证码
+       // check:校验验证码是否一样，返回boolean。成功后则会删除之前验证码
         if (!$captcha->check(input("captcha_code"))) {
             // error错误提示函数
             $this->error("验证码输入不正确");
-        }else if(input('user_name') != 'admin' || input('user_pwd') != '9517jsnjsn'){
-        	  $this->error("管理员信息不正确");
-        }else{
-        	Session::set("admin",1);
-        	  $this->success("登录成功","index/index");
+        }else if(in_array(input('user_name'), $admin_na)){
+              $a=input('user_name');
+              $where=array("login_name"=>$a);
+              $admin_gp=db('admin')->field('pwd,group_id')->where($where)->find();
+              //print_r($admin_p['pwd']);exit;
+              if($admin_gp['pwd']==input('user_pwd')){
+                  Session::set("login_name",$a);
+                  Session::set("group_id",$admin_gp['group_id']);
+                  $this->success("登录成功","index/index");               
+              }else{
+                $this->error("管理员密码不正确");
+              }
 
+        }else{
+          $this->error("管理员账号不正确");
         }
 
     }
 
     public function logout()
     {
-        Session::delete("admin");
-        	  $this->success("退出成功","index");
-
-    	
+        Session::delete("login_name");
+        if(Session::get("super")){
+            Session::delete("super");
+        }
+        
+        	  $this->success("退出成功","index");	
     }
 
     

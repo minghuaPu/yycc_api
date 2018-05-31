@@ -7,7 +7,7 @@ class homeworkrel extends \app\admin\controller\Auth
 	// 题目列表
 	 public function index()
     {
-    	$homework_rel_list = db('homework_rel')->paginate(5);
+    	$homework_rel_list = db('homework_rel')->paginate(20);
     	$this->assign("homework_rel_list",$homework_rel_list); 
         return $this->fetch();
     }
@@ -48,7 +48,7 @@ class homeworkrel extends \app\admin\controller\Auth
     {
         $homeworkrel_list_one=model('homeworkrel')->detailhomeworkrel();
         $banji=db('banji')->where("id=".$homeworkrel_list_one['banji'])->find();
-        $homework=db('homework')->where("id in (".$homeworkrel_list_one['homework_add_id'].")")->field('work_name')->select();
+        $homework=db('homework')->where("id in (".$homeworkrel_list_one['homework_add_id'].")")->field('tc_content1')->select();
         //print_r($homework);
         $this->assign("homeworkrel_list_one",$homeworkrel_list_one);
         $this->assign("banji", $banji);

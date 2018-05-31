@@ -4,12 +4,12 @@ namespace app\admin\controller;
 class Listen extends \app\admin\controller\Auth
 {
     public function index()
-    {
+    {  
         $user_name = input('user_name');
         $where = '';
-        if($user_name){
-            $where = "user_name like '%$user_name%'";
-        }
+           if($user_name){
+              $where = "user_name like '%$user_name%'";
+            }
         $askbuy_list = db('ask_buy')
                     ->alias('ab')
                     ->join('user u','u.id=ab.user_id')
@@ -21,6 +21,7 @@ class Listen extends \app\admin\controller\Auth
         $this->assign('user_name',$user_name);
     	$this->assign('askbuy_list',$askbuy_list);
         return $this->fetch();
+        
     }
 
     public function delete()

@@ -7,6 +7,7 @@ class Smalltalk extends \app\admin\controller\Auth
 	// 列表
 	 public function index()
     {
+
     	// 查询列表
     	$smalltalk_list = model('smalltalk')->getList();
 

@@ -5,6 +5,7 @@ class Vpcategory extends \app\admin\controller\Auth
 {
     public function index()
     {
+
     	$vpcate_list = db('vip_cate')
     				->paginate(8);
     	$this->assign('vpcate_list',$vpcate_list);

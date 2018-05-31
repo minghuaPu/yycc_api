@@ -150,8 +150,9 @@ table td{
                                         <span></span>
                                     </div>
                                 </li>
-                                                                <li class="nav-item <?php echo is_active('admin','active open');?>  <?php echo  is_active('admin','active open');?>  <?php echo  is_active('admingroup','active open');?>">
-                                    <a href=" 'admin/index')}" class="nav-link nav-toggle">
+ 
+                                <li class="nav-item <?php echo is_active('admin','active open');?>  <?php echo  is_active('admin','active open');?>  <?php echo  is_active('admingroup','active open');?>">
+                                    <a href="{:url('admin/index')}" class="nav-link nav-toggle">
                                         <i class="icon-user"></i>
                                         <span class="title">管理员</span>
                                         <span class="arrow"></span>
@@ -233,7 +234,9 @@ table td{
                                         <span class="title">提问管理</span>
                                     </a>
                                 </li>
-                                <li class="nav-item <?php echo is_active('homework','active open');?>  <?php echo  is_active('special','active open');?>">
+                                <li class="nav-item <?php echo is_active('homework','active open');?>  <?php echo  is_active('special','active open');?>  <?php echo  is_active('homeworkrel','active open');?>
+                                <?php echo  is_active('homeworkresult','active open');?>
+                                ">
                                     <a href="{:url('homework/index')}" class="nav-link nav-toggle">
                                         <i class="icon-disc"></i>
                                         <span class="title">作业管理</span>

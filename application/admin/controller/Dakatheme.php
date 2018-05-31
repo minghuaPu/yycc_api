@@ -4,7 +4,7 @@ namespace app\admin\controller;
 class Dakatheme extends \app\admin\controller\Auth
 {
     public function index()
-    {
+    {   
         $dakaTheme_list = db('daka_theme')->paginate(8);
         // print_r($dakaTheme_list['starTime']);
         // foreach ($dakaTheme_list as $key => $value) {
@@ -18,6 +18,7 @@ class Dakatheme extends \app\admin\controller\Auth
 
         $this->assign('dakaTheme_list', $dakaTheme_list);
         return $this->fetch();
+        
     }
 
     public function edit()

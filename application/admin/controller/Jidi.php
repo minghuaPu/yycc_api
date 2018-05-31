@@ -1,5 +1,6 @@
 <?php
 namespace app\admin\controller;
+
 /**
  * Created by PhpStorm.
  * User: graphic
@@ -9,11 +10,12 @@ namespace app\admin\controller;
 
 Class Jidi extends \app\admin\controller\Auth {
 
-    public function index(){
+    public function index(){	
         $jidi_data = db('user_jidi')->order('id desc')->paginate();
 
         $this->assign('jidi_data',$jidi_data);
         return $this->fetch();
+        
     }
 
 }
