@@ -68,6 +68,12 @@ function user_kaitong_status(){
       2=>'已支付'
 	];
 }
+function orders_type() {
+	return [
+	    1 => '开通',
+	    2 => '基地',
+	];
+}
 function get_banji(){
     return db('banji')->select();
 }
