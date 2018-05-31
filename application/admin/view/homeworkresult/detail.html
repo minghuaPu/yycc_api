@@ -5,53 +5,56 @@
      <form action="{:url('update')}" method="post" enctype="multipart/form-data">  
        <input type="text" class="form-control" name="id" value="{$homeworkresult_list_one['id']}" style="display: none;">
         <div class="form-group">
-            <label >用户编号</label>
-            <input type="text" class="form-control" name="u_id" value="{$homeworkresult_list_one['u_id']}">
+            <strong>用户编号</strong>
+         <p> {$homeworkresult_list_one['u_id']}</p>
         </div>
         <div class="form-group">
-            <label >用户名称</label>
+            <strong>用户名称</strong>
             {foreach $username as $v}
-            <input type="text" class="form-control" name="username" value="{$v['user_name']}">
+            <p>{$v['user_name']}</p>
             {/foreach}
         </div>
         <div class="form-group">
-            <label >作业编号</label>
-            <input type="text" class="form-control" name="hw_id" value="{$homeworkresult_list_one['hw_id']}">
+            <strong>作业编号</strong>
+           <p>{$homeworkresult_list_one['hw_id']}</p>
         </div>
         <div class="form-group">
-            <label >作业名称</label>
+            <strong>作业名称</strong>
             {foreach $title as $vv}
-            <input type="text" class="form-control" name="title" value="{$vv['tc_title']}">
+            <p>{$vv['tc_title']}</p>
             {/foreach}
         </div>           
         <div class="form-group">
-            <label >提交时间</label>
-            <input type="text" class="datetimepicker" name="time" value="{$homeworkresult_list_one['time']|date="Y-m-d H:i",###}">
+            <strong>提交时间</strong>
+            <p>{$homeworkresult_list_one['time']|date="Y-m-d H:i",###}</p>
         </div> 
          <div class="form-group">
-            <label >老师回复</label>
-          <textarea  name="reply" style="width:100%">{$homeworkresult_list_one['reply']}</textarea>
+            <strong>老师回复</strong>
+          <p>{$homeworkresult_list_one['reply']}</p>
         </div> 
         <div class="form-group">
-            <label >完成程度</label>
-            <input type="text" class="form-control" name="progress" value="{$homeworkresult_list_one['progress']}">
+            <strong>完成程度</strong>
+       <p>{$homeworkresult_list_one['progress']}</p>
         </div> 
         <div class="form-group">
-            <label >完成时长</label>
-            <input type="text" class="form-control" name="hao_time" value="{$homeworkresult_list_one['hao_time']}">
+            <strong>完成时长</strong>
+            <p>{$homeworkresult_list_one['hao_time']}</p>
         </div> 
         <div class="form-group">
-            <label >正确率</label>
-            <input type="text" class="form-control" name="correct" value="{$homeworkresult_list_one['correct']}">
+            <strong>正确率</strong>
+           <p>{$homeworkresult_list_one['correct']}</p>
         </div> 
+        <style type="text/css">
+            .bbb img{width: 100%}
+        </style>
         <div class="form-group">
-            <label >学生答案</label>
-            <textarea  name="s_homework" style="width:100%"> {$homeworkresult_list_one['s_homework']}</textarea>   
+            <strong>学生答案</strong>
+          <p class="bbb"> {$homeworkresult_list_one['s_homework']}</p>
         </div> 
         <div class="form-group">
             <p class="tishi" style="display: none;"></p>
-            <label >正确答案</label>
-             <textarea  name="result" style="width:100%">{$homeworkresult_list_one['result']}</textarea>
+            <strong>正确答案</strong>
+             <p>{$homeworkresult_list_one['result']}</p>
         </div>
         <div class="form-group">
             <a class="btn btn-default" href="{:url('index')}" role="button">返回</a>

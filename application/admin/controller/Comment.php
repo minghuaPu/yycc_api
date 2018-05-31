@@ -13,6 +13,7 @@ class Comment extends \app\admin\controller\Auth
     	$this->assign("comment_list",$comment_list);
 
         return $this->fetch();
+        
     }
 
 	// 详情

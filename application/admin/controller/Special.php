@@ -7,6 +7,7 @@ class Special extends \app\admin\controller\Auth
 	// 列表
 	 public function index()
     {
+
     	// 查询列表
     	$special_list = db("special")->order('id asc')->paginate(5);
     	$this->assign("special_list",$special_list); 

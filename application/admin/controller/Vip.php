@@ -5,6 +5,7 @@ class Vip extends \app\admin\controller\Auth
 {
     public function index()
     {
+
         $vip_list = model('Vip')->getVipList();
         $this->assign('vip_list', $vip_list);
 

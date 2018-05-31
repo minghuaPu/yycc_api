@@ -1,0 +1,60 @@
+{include file="public/header"} 
+
+<div class="self-container mt-3">
+    <h3>添加权限页</h3>
+     <form action="{:url('save')}" method="post" enctype="multipart/form-data">  
+        <div class="form-group">
+            <label >权限名称</label>
+            <input type="text" class="form-control" name="group_name">
+        </div>
+        <div class="form-group" id="all">
+            <label >权限范围（添加允许访问的控制器(c)及其方法(a)。一个不填代表允许所有权限，在方法(a)里填“all”代表允许该控制器的所有方法。）</label><br><input type="button" id="add" value="多加一组权限" class="btn">
+            <div class="quanxian">c<input type="text" class="quanc" value="index" >&nbsp;&nbsp;a<input type="text" class="quana" value="index"></div>
+            <input type="text" id="acess"  name="acess" style="display: none;">
+        </div>          
+        <div class="form-group">
+            <label >权限代号</label>
+            <input type="text" class="form-control" name="super" >
+        </div> 
+
+<!--         <div class="form-group">
+            <label >上传头像</label>
+            <input type="file" class="form-control" name="picture">
+        </div> --> 
+        <div class="form-group">
+            <input type="submit" class="btn btn-info" value="添加" id="queren">
+        </div>
+     </form>
+</div>
+<script>
+	var quanxian=document.querySelector(".quanxian");
+	var addbtn=document.querySelector("#add");
+    var bosebox=document.querySelector("#all");
+    var quren=document.querySelector("#queren");
+    var acess=document.querySelector("#acess");
+   
+    addbtn.onclick=function(){
+    	      btntf=true;
+		      var addquan=quanxian.cloneNode(true);
+		      bosebox.appendChild(addquan);
+		  }
+
+    queren.onmouseover=function(){
+    	      var c=document.querySelectorAll(".quanc");
+		      var a=document.querySelectorAll(".quana");
+		      fuzhi(c,a);
+    }
+	function fuzhi(c,a){
+		var value=new Array();
+       for(var i=0;i<c.length;i++){
+       	 value+="\{\"\c\"\:\""+c[i].value+"\"\,\"\a\"\:\""+a[i].value+"\"\}\,";
+       }
+       var valu=value.substr(0,value.length-1);
+       var val="["+valu+"]";
+
+       if(val.substr(7,1)=="\""){val="";}
+       acess.value=val;       
+	}
+	
+</script>
+{include file="public/footer"}

@@ -1,0 +1,44 @@
+{include file="public/header"} 
+
+<div class="self-container mt-3">
+    <h3>添加管理员页</h3>
+     <form action="{:url('save')}" method="post" enctype="multipart/form-data">  
+        <div class="form-group">
+            <label >登录账号</label>
+            <input type="text" class="form-control" name="login_name">
+        </div>
+        <div class="form-group">
+            <label >登录密码</label>
+            <input type="password" class="form-control" name="pwd">
+        </div>          
+        <div class="form-group">
+            <label >真实姓名</label>
+            <input type="text" class="form-control" name="name">
+        </div> 
+
+        <div class="form-group">
+        
+            <label >性别</label>
+            <input type="radio"  name="sex" value="男">男
+            <input type="radio"  name="sex" value="女">女
+        </div> 
+        <div class="form-group">
+            <label >邮箱</label>
+            <input type="text" class="form-control" name="e_mail">
+        </div> 
+        <div class="form-group">
+            <label >权限</label>
+            <input type="radio"  name="group_id" value="2">普通管理员
+            <input type="radio"  name="group_id" value="1">超级管理员
+        </div> 
+<!--         <div class="form-group">
+            <label >上传头像</label>
+            <input type="file" class="form-control" name="picture">
+        </div> --> 
+        <div class="form-group">
+            <input type="submit" class="btn btn-info" value="添加">
+        </div>
+     </form>
+</div>
+
+{include file="public/footer"}

@@ -1,0 +1,45 @@
+{include file="public/header"} 
+
+<div class="self-container mt-3">
+    <h3>修改管理员页</h3>
+     <form action="{:url('update')}" method="post" enctype="multipart/form-data">  
+        <div class="form-group">
+            <label >登录账号</label>
+            <input type="text" class="form-control" name="login_name" value="{$a_one.login_name}">
+        </div>
+        <div class="form-group">
+            <label >登录密码</label>
+            <input type="password" class="form-control" name="pwd" value="{$a_one.pwd}">
+        </div>          
+        <div class="form-group">
+            <label >真实姓名</label>
+            <input type="text" class="form-control" name="name" value="{$a_one.name}">
+        </div> 
+
+        <div class="form-group">
+        
+            <label >性别</label>
+            <input type="radio"  name="sex" value="男" {if $a_one.sex=="男"} checked="checked"{/if}>男
+            <input type="radio"  name="sex" value="女" {if $a_one.sex=="女"} checked="checked"{/if}>女
+        </div> 
+        <div class="form-group">
+            <label >邮箱</label>
+            <input type="text" class="form-control" name="e_mail" value="{$a_one.e_mail}">
+        </div> 
+        <div class="form-group">
+            <label >权限</label>
+            <input type="radio"  name="group_id" value="2" {if $a_one.group_id=="2"} checked="checked"{/if}>普通管理员
+            <input type="radio"  name="group_id" value="1" {if $a_one.group_id=="1"} checked="checked"{/if}>超级管理员
+        </div> 
+        <input type="text" name="id" value="{$a_one.id}" style="display: none;">
+<!--         <div class="form-group">
+            <label >上传头像</label>
+            <input type="file" class="form-control" name="picture">
+        </div> --> 
+        <div class="form-group">
+            <input type="submit" class="btn btn-info" value="提交修改">
+        </div>
+     </form>
+</div>
+
+{include file="public/footer"}

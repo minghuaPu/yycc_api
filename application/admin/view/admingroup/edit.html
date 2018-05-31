@@ -1,0 +1,178 @@
+{include file="public/header"} 
+
+<div class="self-container mt-3" id="bigbox">
+    <h3>修改权限页</h3>
+     <form action="{:url('update')}" method="post" enctype="multipart/form-data">  
+        <div class="form-group">
+            <label >权限名称</label>
+            <input type="text" name="id" value="{$a_one.id}" style="display: none;">
+            <input type="text" class="form-control" name="group_name" value="{$a_one.group_name}">
+        </div>
+        <div class="form-group" id="all">
+            <label >权限范围（修改允许访问的控制器(c)及其方法(a)）</label><br><input type="button" id="add" value="多加一组权限" class="btn">
+            {if $bb!=null}{foreach $bb as $key=>$value}
+            <div class="quanxian">c<input type="text" class="quanc" value="{$value['c']}" >&nbsp;&nbsp;a<input type="text" class="quana" value="{$value['a']}">
+            <span class="smtext" style="margin-left: 10px;"></span>
+            <input type="button" class="del btn-danger" value="移除" style="float: right;" name="">
+            <input type="button" class="shuoming btn-info" style="float: right;" value="说明" name=""><p></p>
+            </div>
+            {/foreach}
+            {else /}
+             <div class="quanxian">c<input type="text" class="quanc" value="index" >&nbsp;&nbsp;a<input type="text" class="quana" value="index"></div>
+            {/if}
+            <input type="text" id="acess" name="acess" style="display: none;" >
+            
+        </div>          
+        <div class="form-group">
+            <label >权限代号</label>
+            <input type="text" class="form-control" name="super"  value="{$a_one.super}">
+        </div> 
+
+<!--         <div class="form-group">
+            <label >上传头像</label>
+            <input type="file" class="form-control" name="picture">
+        </div> --> 
+        <div class="form-group">
+            <input type="submit" class="btn btn-info" value="确认修改" id="queren">
+        </div>
+     </form>
+</div>
+<script>
+    var quanxian=document.querySelector(".quanxian");
+	var addbtn=document.querySelector("#add");
+    var bosebox=document.querySelector("#all");
+    var quren=document.querySelector("#queren");
+    var acess=document.querySelector("#acess");
+    var bigbox=document.querySelector("#bigbox");
+    var shuoming=document.querySelectorAll(".shuoming");
+    var del=document.querySelectorAll(".del"); 
+    var qx=document.querySelectorAll(".quanxian");
+    var text = '{ "sites" : [' +
+    '{ "control":"index" , "name":"后台首页控制器" },' +
+    '{ "control":"admin" , "name":"管理员控制器" },' +
+    '{ "control":"admingroup" , "name":"管理员权限组控制器" },' +
+    '{ "control":"answer" , "name":"快问回答控制器" },' +
+    '{ "control":"comment" , "name":"商城评论控制器" },' +
+    '{ "control":"dakatheme" , "name":"打卡主题控制器" },' +
+    '{ "control":"follow" , "name":"关注控制器" },' +
+    '{ "control":"headline" , "name":"头条控制器" },' +
+    '{ "control":"homework" , "name":"作业控制器" },' +
+    '{ "control":"homeworkrel" , "name":"作业任务控制器" },' +
+    '{ "control":"homeworkresult" , "name":"作业提交控制器" },' +
+    '{ "control":"jidi" , "name":"基地控制器" },' +
+    '{ "control":"listen" , "name":"监听控制器" },' +
+    '{ "control":"login" , "name":"登录控制器" },' +
+    '{ "control":"mobilehdp" , "name":"移动端控制器" },' +
+    '{ "control":"mask" , "name":"控制器" },' +
+    '{ "control":"order" , "name":"课程订单控制器" },' +
+    '{ "control":"quickask" , "name":"快问控制器" },' +
+    '{ "control":"shoppingmall" , "name":"商城控制器" },' +
+    '{ "control":"slider" , "name":"原首页控制器" },' +
+    '{ "control":"smalltalk" , "name":"课程管理控制器" },' +
+    '{ "control":"smallcate" , "name":"课程分类控制器" },' +
+    '{ "control":"special" , "name":"课程专题控制器" },' +
+    '{ "control":"user" , "name":"用户控制器" },' +
+    '{ "control":"vip" , "name":"答主控制器" },' +
+    '{ "control":"vpcategory" , "name":"答主分类管理控制器" }]}';
+    var obj = JSON.parse(text);
+    // //document.getElementById("demo").innerHTML = obj.sites[1].name + " " + obj.sites[1].url;
+
+
+    //显示权限信息说明
+    // if(shuoming=sessionStorage.getItem('shuoming')!==null){
+    //     //获取session+
+    //     var shuoming=sessionStorage.getItem('shuoming');
+    //     var c=sessionStorage.getItem('c');
+    //     var smtext=sessionStorage.getItem('smtext');
+    //     console.log(shuoming.length)
+    //     for(var i=0;i<shuoming.length;i++){
+    // 	    shuoming[i].index=i;
+    //         shuoming[i].onclick =function() {
+    // 	        //console.log(c[this.index].value);
+    // 	        for(var i=0;i<obj.sites.length;i++){
+    //                        if(obj.sites[i].control==c[this.index].value){smtext[this.index].innerHTML=obj.sites[i].name;}              
+    // 	        }
+    // 	    }
+    //      }
+    //      sessionStorage.removeItem('shuoming');
+    //      sessionStorage.removeItem('c');
+    //      sessionStorage.removeItem('smtext');
+    // }
+    // else{
+    	var shuoming=document.querySelectorAll(".shuoming");
+        for(var i=0;i<shuoming.length;i++){
+    	   shuoming[i].index=i;
+           shuoming[i].onclick =function() {
+           	    var shuoming=document.querySelectorAll(".shuoming");
+    	        var c=document.querySelectorAll(".quanc");
+    	        var smtext=document.querySelectorAll(".smtext");
+    	        //console.log(c[this.index].value);
+    	        for(var i=0;i<obj.sites.length;i++){
+    	        		   if(obj.sites[i].control==c[this.index].value){smtext[this.index].innerHTML=obj.sites[i].name;}  
+    	        }
+    	    }
+        }
+    //}
+
+
+    //删除权限节点
+    // if(sessionStorage.getItem('qx')){
+    // 	var qx=sessionStorage.getItem('qx');
+    // 	var del=sessionStorage.getItem('del');
+    //     for(var i=0;i<del.length;i++){
+    // 	    del[i].index=i;
+    //         del[i].onclick=function(){ 
+    //        	     bosebox.removeChild(qx[this.index]);
+    // 	     }
+    //     }
+    //     sessionStorage.removeItem('qx');
+    //     sessionStorage.removeItem('del');
+    //  }else{
+     	var del=document.querySelectorAll(".del"); 
+        var qx=document.querySelectorAll(".quanxian");
+     	for(var i=0;i<del.length;i++){
+    	    del[i].index=i;
+            del[i].onclick=function(){ 
+           	     bosebox.removeChild(qx[this.index]);
+    	     }
+        }
+     //}
+    //复制权限节点并把新产生的节点保存session
+    addbtn.onclick=function(){
+    	      btntf=true;
+		      var addquan=quanxian.cloneNode(true);//克隆节点
+		      bosebox.appendChild(addquan);//生成节点
+        //       var qx=document.querySelectorAll(".quanxian");
+        //       var shuoming=document.querySelectorAll(".shuoming");
+    	   //    var c=document.querySelectorAll(".quanc");
+    	   //    var del=document.querySelectorAll(".del"); 
+    	   //    var smtext=document.querySelectorAll(".smtext");
+		      // sessionStorage.setItem('qx',qx);//设置session
+        //       sessionStorage.setItem('shuoming',shuoming);
+        //       sessionStorage.setItem('c',c);
+		      // sessionStorage.setItem('del',del);
+        //       sessionStorage.setItem('smtext',smtext);
+
+		  }
+
+    //获取节点元素并跳转
+    queren.onmouseover=function(){
+    	      var c=document.querySelectorAll(".quanc");
+		      var a=document.querySelectorAll(".quana");
+		      fuzhi(c,a);
+    }
+    //处理传过来的节点元素，把值整理给acess
+	function fuzhi(c,a){
+		var value=new Array();
+       for(var i=0;i<c.length;i++){
+       	 value+="\{\"\c\"\:\""+c[i].value+"\"\,\"\a\"\:\""+a[i].value+"\"\}\,";
+       }
+       var valu=value.substr(0,value.length-1);
+       var val="["+valu+"]";
+
+       if(val.substr(7,1)=="\""){val="";}
+       acess.value=val;       
+	}
+	
+</script>
+{include file="public/footer"}

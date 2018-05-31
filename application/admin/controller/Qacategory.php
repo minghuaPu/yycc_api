@@ -5,6 +5,7 @@ class Qacategory extends \app\admin\controller\Auth
 {
     public function index()
     {
+
     	$qacate_list = db('quickask_cate')
     				->paginate(8);
     	$this->assign('qacate_list',$qacate_list);

@@ -13,6 +13,7 @@ class Answer extends \app\admin\controller\Auth
         $this->assign('is_select', input('is_select'));
         
         return $this->fetch();
+        
     }
 
     public function delete()

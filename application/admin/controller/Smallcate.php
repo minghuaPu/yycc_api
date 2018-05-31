@@ -5,7 +5,7 @@ class Smallcate extends \app\admin\controller\Auth
 {
     public function index()
     {
-     
+
         $smallcate_list = db('smalltalk_cate')
                     ->order('id desc')
                     ->paginate(8);

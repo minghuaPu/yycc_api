@@ -5,6 +5,7 @@ class Myask extends \app\admin\controller\Auth
 {
     public function index()
     {
+
         $ask_list = model('Myask')->getMyaskList();
         $this->assign('ask_list',$ask_list);
 

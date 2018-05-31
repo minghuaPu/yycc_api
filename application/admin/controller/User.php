@@ -5,13 +5,15 @@ class User extends \app\admin\controller\Auth
 {
     public function index()
     {
-        $user_list = model('User')->getUserList();
-        $this->assign('user_list', $user_list);
-        $this->assign('user_name', input('user_name'));
-        $this->assign('phone', input('phone'));
-        $this->assign('kt_status',user_kaitong_status());
-        $this->assign('banji',get_banji());
-        return $this->fetch();
+
+            $user_list = model('User')->getUserList();
+            $this->assign('user_list', $user_list);
+            $this->assign('user_name', input('user_name'));
+            $this->assign('phone', input('phone'));
+            $this->assign('kt_status',user_kaitong_status());
+            $this->assign('banji',get_banji());
+            return $this->fetch();
+        
     }
 
     public function add()
