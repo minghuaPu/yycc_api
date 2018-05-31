@@ -1,0 +1,44 @@
+{include file="public/header"}
+<form action="{:url('save_edit')}" class="form">
+	<div class="form-group">
+		<input type="hidden" name="id" class="form-control" value="{$stu_list['id']}">
+	</div>
+	<div class="form-group">
+		<label>学生ID</label>
+		<input type="text" name="uid" class="form-control" value="{$stu_list['uid']}">
+	</div>
+	<div class="form-group">
+		<label>姓名</label>
+		<input type="text" name="xm" class="form-control" value="{$stu_list['xm']}">
+	</div>
+	<div class="form-group">
+		<label>报名时间</label>
+		<input type="date" name="add_time" class="form-control" value="{$stu_list['add_time']|date='Y-m-d',###}">
+	</div>
+	<div class="form-group">
+		<label>支付状态</label>&nbsp;&nbsp;
+		<input type="radio" name="is_pay" value="0">未支付&nbsp;&nbsp;
+		<input type="radio" name="is_pay" value="1">打算支付&nbsp;&nbsp;
+		<input type="radio" name="is_pay" value="2" checked="checked">已支付
+	</div>
+	<div class="form-group">
+		<label>报名费</label>
+		<input type="text" name="money" class="form-control" value="{$stu_list['money']}">
+	</div>
+	<div class="form-group">
+		<label>学校</label>
+		<input type="text" name="school" class="form-control" value="{$stu_list['school']}">
+	</div>
+	<div class="form-group">
+		<label>年级</label>
+		<input type="text" name="grade" class="form-control" value="{$stu_list['grade']}">
+	</div>
+	<div class="form-group">
+		<label>订单号</label>
+		<input type="text" name="out_trade_no" class="form-control" value="{$stu_list['out_trade_no']}">
+	</div>
+	<div>
+		<input type="submit" value="更新" class="btn btn-primary">
+	</div>
+</form>
+{include file="public/footer"}

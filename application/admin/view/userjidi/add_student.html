@@ -1,0 +1,42 @@
+{include file="public/header"}
+
+<form action="{:url('save_student')}" class="add_form">
+	<div class="form-group">
+		<label>学生ID</label>
+		<input type="text" name="uid" class="form-control" placeholder="请输入学生ID">
+	</div>
+	<div class="form-group">
+		<label>姓名</label>
+		<input type="text" name="xm" class="form-control" placeholder="请输入学生姓名">
+	</div>
+	<div class="form-group">
+		<label>报名时间</label>
+		<input type="date" name="add_time" class="form-control" placeholder="请填写报名时间">
+	</div>
+	<div class="form-group">
+		<label>支付状态</label>&nbsp;&nbsp;
+		<input type="radio" name="is_pay" value="0">未支付&nbsp;&nbsp;
+		<input type="radio" name="is_pay" value="1">打算支付&nbsp;&nbsp;
+		<input type="radio" name="is_pay" value="2" checked="checked">已支付
+	</div>
+	<div class="form-group">
+		<label>报名费</label>
+		<input type="text" name="money" class="form-control" placeholder="请输入报名费用">
+	</div>
+	<div class="form-group">
+		<label>学校</label>
+		<input type="text" name="school" class="form-control" placeholder="请输入学校名称">
+	</div>
+	<div class="form-group">
+		<label>年级</label>
+		<input type="text" name="grade" class="form-control" placeholder="请输入年级">
+	</div>
+	<div class="form-group">
+		<label>订单号</label>
+		<input type="text" name="out_trade_no" class="form-control" placeholder="请输填写订单号">
+	</div>
+	<div>
+		<input type="submit" value="保存" class="btn btn-primary">
+	</div>
+</form>	
+{include file="public/footer"}
