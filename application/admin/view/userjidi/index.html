@@ -1,0 +1,55 @@
+{include file="public/header"} 
+<a href="{:url('add_student')}"><button class="btn btn-info">添加学生</button></a>
+<div class="search_form">
+    <form class="form" action="{:url('index')}">
+        <input type="text" name="uname" class="btn btn-control" placeholder="请输入姓名">
+        <input type="text" name="school_name" class="btn btn-control" placeholder="请输入学校">
+        <button type="submit" class="btn btn-primary">搜索</button>
+    </form>
+</div>
+<p></p> 
+<div class="mt-3">
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>姓名</th>
+            <th>报名时间</th>
+            <th>支付状态</th>
+            <th>报名费</th>
+            <th>学校</th>
+            <th>年级</th>
+            <th>订单号</th>
+            <th>操作</th>
+        </tr>
+        {foreach $apply_list as $value}
+        <tr>
+            <td>{$value['xm']}</td>
+            <td>{$value['add_time']|date="Y-m-d",###}</td>
+            <td>
+                {if $value['is_pay']==0}
+                <span style="color:red">{$pay_status[$value['is_pay']]}</span>
+                {elseif $value['is_pay']==1}
+                <span style="color:orange">{$pay_status[$value['is_pay']]}</span>
+                {elseif $value['is_pay']==2}
+                <span style="color:green">{$pay_status[$value['is_pay']]}</span>
+                {else}
+                {/if}
+            </td>
+            <td>{$value['money']}</td>
+            <td>{$value['school']}</td>
+            <td>{$value['grade']}</td>
+            <td>{$value['out_trade_no']}</td>
+            <td>
+                <a href="{:url('edit_stu', ['sel_id' => $value['id']])}"><button type="button" class="btn btn-primary">编辑</button></a>
+                <a href="{:url('del_stu', ['sel_id' => $value['id']])}"><button type="button" class="btn btn-danger">删除</button></a>
+            </td>
+        </tr>
+        {/foreach}
+    </table>
+    <div>
+        {$apply_list->render()}
+    </div>
+</div>
+<script>
+
+</script>
+{include file="public/footer"}
