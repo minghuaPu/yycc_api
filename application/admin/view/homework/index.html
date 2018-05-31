@@ -1,6 +1,6 @@
 {include file='public/header'}
 <div class="row">
-    <a href="{:url('add_timu')}" class="btn btn-info">添加题目</a>
+    <a href="{:url('add_timu')}">添加题目</a>
 </div>
 <table class="table">
     <tr>
@@ -11,12 +11,12 @@
         <th>多选题答案</th>
         <th>判断题答案</th>
         <th>填空题答案</th>
-        <th  style="width:200px!important;">操作</th>
+        <th  style="width:180px!important;">操作</th>
     </tr>
     {foreach $homework_list as $value}
     <tr>
         <td>{$value['tc_id']}</td>
-        <td>{$value['tc_content1']}</td>
+        <td>{$value['work_name']}</td>
         <td>{$value['tc_content2']}...</td>
         <td>{$value['tc_danxuan']}</td>
         <td>{$value['tc_duoxuan']}</td>

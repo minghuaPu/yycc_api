@@ -7,7 +7,7 @@ class homeworkresult extends \app\admin\controller\Auth
 	// 题目列表
 	 public function index()
     {
-    	$homework_result_list = db('homework_result')->order('id desc')->paginate(20);
+    	$homework_result_list = db('homework_result')->paginate(5);
     	$this->assign("homework_result_list",$homework_result_list); 
         return $this->fetch();
     }
@@ -47,14 +47,6 @@ class homeworkresult extends \app\admin\controller\Auth
      public function detail()
     {
          $homeworkresult_list_one=model('Homeworkresult')->detailhomeworkresult();
-        $homeworkresult_list_one['result']=implode(',', unserialize($homeworkresult_list_one['result']));
-       
-        if ($homeworkresult_list_one['s_homework']) {
-               $homeworkresult_list_one['s_homework']=implode(',',json_decode($homeworkresult_list_one['s_homework'],true));
-        }
-     
-
-
          $username=db('user')->where("id=".$homeworkresult_list_one['u_id'])->field('user_name')->select();
          $title=db('homework_rel')->where("id=".$homeworkresult_list_one['hw_id'])->field('tc_title')->select();
          
