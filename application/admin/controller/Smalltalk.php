@@ -69,13 +69,14 @@ class Smalltalk extends \app\admin\controller\Auth
         $hdp_img = request()->file("smalltalk_img");
         $smalltalk_img =  '';
         if ($hdp_img) {
+           $image = \think\Image::open($hdp_img);
+            
            // 如果有上传图片
            // 那么就保存
            $pic_object  = $hdp_img->move("uploads");
           // $pic_type = $pic_object->getExtension();//文件的后缀
            $smalltalk_img = "./uploads/".str_replace('\\', '/', $pic_object->getSaveName());
 
-           $image = \think\Image::open(ROOT_PATH.'/public'.$smalltalk_img);
 
         // 按照原图的比例生成一个最大为150*150的缩略图并保存为thumb.png
         $image->thumb(220,130,\think\Image::THUMB_CENTER)->save($smalltalk_img."220_130.jpg");
@@ -91,6 +92,7 @@ class Smalltalk extends \app\admin\controller\Auth
             "title"=>input("title"),
             "join_num"=>input("join_num"),
             "vip_id"=>input("vip_id"),
+            "preview_video"=>input("preview_video"),
             "summary"=>input("summary"),
             "create_time"=>time(),
             "smalltalk_cate_id"=>input("smalltalk_cate_id"),
