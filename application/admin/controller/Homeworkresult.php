@@ -6,10 +6,22 @@ class homeworkresult extends \app\admin\controller\Auth
 	
 	// 题目列表
 	 public function index()
-    {
-    	$homework_result_list = db('homework_result')->order('id desc')->paginate(20);
-       $hao= array( );
-      foreach($homework_result_list as $key=>$value){
+    {   
+        //按班级名称查询
+        if(input('banji')){
+            $banji=input('banji');
+            $banjiid=db('banji')->where("banji_name like '%".$banji."%'")->field("id")->find();
+            //print_r($banjiid['id']);exit();
+            $userid=db('user')->where("banji_id=".$banjiid['id'])->field('id')->select();
+            foreach($userid as $v){$uid[]=$v['id'];}
+            //print_r($uid);exit();
+            $homework_result_list = db('homework_result')->where('u_id','in', $uid)->order('id desc')->paginate(20);
+        }//无条件查询
+        else{
+    	     $homework_result_list = db('homework_result')->order('id desc')->paginate(20);
+        }
+        $hao= array( );
+        foreach($homework_result_list as $key=>$value){
          
         if($value['hao_time']>60){
             $haotime=$value['hao_time']/60;
@@ -23,7 +35,7 @@ class homeworkresult extends \app\admin\controller\Auth
               $hao[]=$value['hao_time']."秒";
         }  
 
-      } 
+        } 
         $this->assign("hao",$hao);  
     	$this->assign("homework_result_list",$homework_result_list); 
         return $this->fetch();
