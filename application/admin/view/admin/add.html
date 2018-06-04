@@ -27,9 +27,10 @@
             <input type="text" class="form-control" name="e_mail">
         </div> 
         <div class="form-group">
-            <label >权限</label>
-            <input type="radio"  name="group_id" value="2">普通管理员
-            <input type="radio"  name="group_id" value="1">超级管理员
+            <label >权限:</label>
+            {foreach $quan as $key=>$value}
+            <input type="radio"  name="group_id" value="{$value['id']}">{$value['group_name']}
+            {/foreach}
         </div> 
 <!--         <div class="form-group">
             <label >上传头像</label>

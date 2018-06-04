@@ -123,8 +123,8 @@ table td{
                         <div class="top-menu">
                             <ul class="nav navbar-nav pull-right">
 
-                                <li class="dropdown dropdown-user">
-                                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                                                <li class="dropdown dropdown-user">
+                                    <a href=" " class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                         <img alt="" class="img-circle" src="__PUBLIC__/static/admin/avatar3_small.jpg">
                                         <span class="username username-hide-on-mobile">管理员</span>
                                     </a>
@@ -160,7 +160,30 @@ table td{
                                         <span></span>
                                     </div>
                                 </li>
-
+ 
+ 
+                                <li class="nav-item <?php echo is_active('admin','active open');?>  <?php echo  is_active('admin','active open');?>  <?php echo  is_active('admingroup','active open');?>">
+                                    <a href="{:url('admin/index')}" class="nav-link nav-toggle">
+                                        <i class="icon-user"></i>
+                                        <span class="title">管理员</span>
+                                        <span class="arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu" >
+                                        <li class="nav-item start ">
+                                            <a href="{:url('admin/index')}" class="nav-link ">
+                                                <i class="icon-bar-chart"></i>
+                                                <span class="title">管理员</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item start ">
+                                            <a href="{:url('admingroup/index')}" class="nav-link ">
+                                                <i class="icon-bar-chart"></i>
+                                                <span class="title">权限组</span>
+                                            </a>
+                                        </li>                                                                             
+                                    </ul>                
+                                </li>  
+ 
                                 <li class="nav-item <?php echo  is_active('user','active');?>
                                     ">
                                     <a href="{:url('user/index')}" class="nav-link nav-toggle"> <i class="icon-user"></i>

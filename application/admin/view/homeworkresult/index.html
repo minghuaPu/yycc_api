@@ -1,7 +1,15 @@
 {include file='public/header'}
-<div class="row">
+<div class="row" >
     <a href="{:url('add')}" class="btn btn-info">添加作业</a>
+    <div style="display: inline-block;float: right;margin-right: 30px;"><form>
+    <select name="bj_id" style="height: 30px;margin-right: 5px;"><option value="">请选择班级</option>
+    {foreach $bj as $val}
+    <option {if $val['id']==$bj_id} selected {/if} value="{$val['id']}">{$val['banji_name']}</option>
+    {/foreach}
+    </select><input type="submit" class="btn btn-info"  value="搜索">
+    </form></div>
 </div>
+
 <table class="table">
     <tr>
         <th>用户编号</th>
