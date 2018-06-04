@@ -86,25 +86,26 @@ class Userjidi extends \app\admin\controller\Auth {
 
 	// 导出订单列表
 	public function exportExcel() {
+		$arr = ['A', 'B', 'C', 'D', 'E'];		
 		require(ROOT_PATH)."/extend/PHPExcel/PHPExcel.php";
 		require(ROOT_PATH)."/extend/PHPExcel/PHPExcel/Worksheet/ColumnDimension.php";
+		// 获取数据
+		$orders = model('Userjidi')->orderList();
 		$excelObj = new \PHPExcel();
 		$sheetObj = $excelObj->getActiveSheet();
+		// 设置第1行的高度为30
 		$sheetObj->getRowDimension(1)->setRowHeight(30);
 		$sheetObj->setTitle("订单列表");
-		$sheetObj->getColumnDimension('A')->setWidth(16); 
+		for ($i = 0; $i < count($orders[0]); $i++) {
+			$sheetObj->getColumnDimension($arr[$i])->setWidth(16); 
+		}
 		$sheetObj->getColumnDimension('B')->setWidth(25); 
-		$sheetObj->getColumnDimension('C')->setWidth(16); 
-		$sheetObj->getColumnDimension('D')->setWidth(16); 
-		$sheetObj->getColumnDimension('E')->setWidth(16); 
 		$sheetObj->mergeCells('A1:E1')->setCellValue('A1', '订单列表');
 		$sheetObj->getDefaultStyle()->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER)->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 		$sheetObj->getStyle('A1:E1')->getFont()->setName("微软雅黑")->setSize(18)->setBold(true);
 		$sheetObj->getStyle('A2:E2')->getFont()->setName("微软雅黑")->setSize(12)->setBold(true);
 		// 设置标题
 		$sheetObj->setCellValue('A2', '用户名')->setCellValue('B2', '订单编号')->setCellValue('C2', '订单日期')->setCellValue('D2', '订单类型')->setCellValue('E2', '支付状态');
-		// 获取数据
-		$orders = model('Userjidi')->orderList();
 		// print_r($orders);
 		$arr = user_kaitong_status();
 		$type = orders_type();
