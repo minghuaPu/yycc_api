@@ -33,7 +33,7 @@
         <td>
             <a href="{:url('edit',['id'=>$value['id'],'bj_id'=>$bj_id,'page'=>$page])}" class="btn btn-info">编辑</a>
             <a href="{:url('del',['id'=>$value['id']])}" class="btn btn-danger">删除</a>
-            <a href="{:url('detail',['id'=>$value['id']])}" class="btn btn-info">详细</a>
+            <a href="{:url('detail',['id'=>$value['id'],'bj_id'=>$bj_id,'page'=>$page])}" class="btn btn-info">详细</a>
         </td>
     </tr>
     {/foreach}

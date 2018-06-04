@@ -47,9 +47,9 @@
         <style type="text/css">
             .bbb img{width: 100%}
         </style>
-        <div class="form-group">
+        <div class="form-group answer">
             <strong>学生答案</strong>
-          <p class="bbb"> {$homeworkresult_list_one['s_homework']}</p>
+          <p class="" > {$homeworkresult_list_one['s_homework']}</p>
         </div> 
         <div class="form-group">
             <p class="tishi" style="display: none;"></p>
@@ -57,7 +57,7 @@
              <p>{$homeworkresult_list_one['result']}</p>
         </div>
         <div class="form-group">
-            <a class="btn btn-default" href="{:url('index')}" role="button">返回</a>
+            <a class="btn btn-default" href="{:url('index',['bj_id'=>input('bj_id')]).'?page='.input('page')}" role="button">返回</a>
         </div>
      </form>
 </div>
@@ -69,7 +69,6 @@
 
 <script type="text/javascript">
 <!-- 实例化编辑器 -->
-
     $.datetimepicker.setLocale('ch');
     $('.datetimepicker').datetimepicker();
 $(function(){
