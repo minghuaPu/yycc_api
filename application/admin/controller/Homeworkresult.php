@@ -6,47 +6,11 @@ class homeworkresult extends \app\admin\controller\Auth
 	
 	// // 题目列表
 	  public function index()
-     {   //班级信息
- //        $bj=db('banji')->select();
- //        //按班级名称查询
- //        if(input('bj_id')){
- //            //print_r(input('bj_id'));exit();
- //            $banji=input('bj_id');
- //            //$banjiid=db('banji')->where("banji_name like '%".$banji."%'")->field("id")->find();
- //            //print_r($banjiid['id']);exit();
- //            $userid=db('user')->where("banji_id=".$banji)->field('id')->select();
- //            foreach($userid as $v){$uid[]=$v['id'];}
- //            //print_r($uid);exit();
- //            $homework_result_list = db('homework_result')->where('u_id','in', $uid)->order('id desc')->paginate(20);
- //        }//无条件查询
- //        else{
- //    	     $homework_result_list = db('homework_result')->order('id desc')->paginate(20);
- //        }
- //        $hao= array( );
- //        foreach($homework_result_list as $key=>$value){
-         
- //        if($value['hao_time']>60){
- //            $haotime=$value['hao_time']/60;
- //            if(is_int($haotime)){
- //                $hao[]=$haotime."分";     
- //            }else{
- //               $mo=$value['hao_time']%60;
- //               $hao[]=intval($haotime)."分".$mo."秒";
- //            }
- //        }else{
- //              $hao[]=$value['hao_time']."秒";
- //        }  
-
- //        } 
- //        $this->assign('bj_id', input('bj_id'));
- //        $this->assign("hao",$hao);  
- //    	$this->assign("homework_result_list",$homework_result_list);
- //        $this->assign("bj",$bj); 
- //        return $this->fetch();
+     {  
         $all=model('Homeworkresult')->getHomeworkResult();
-       
         $this->assign("hao",$all['hao']);  
-       $this->assign("homework_result_list",$all['hrl']);
+        $this->assign("homework_result_list",$all['hrl']);
+        $this->assign("page",input('page'));
         $this->assign("bj",$all['bj']);
         $this->assign('bj_id', input('bj_id'));
         return $this->fetch();
@@ -66,19 +30,26 @@ class homeworkresult extends \app\admin\controller\Auth
     // 进入题目更改
      public function edit()
     {
-        $id=input('id');
+         $id=input('id');
+        // print_r(input('bj_id'));exit();
          $homeworkresult_list_one=db('homework_result')->where("id=$id")->find();
-         $homeworkresult_list_one['result']=implode(',', unserialize($homeworkresult_list_one['result']));
+         if(is_array($homeworkresult_list_one['result'])){
+             $homeworkresult_list_one['result']=implode(',', unserialize($homeworkresult_list_one['result']));
+         }else{
+            $homeworkresult_list_one['result']=$homeworkresult_list_one['result'];
+         }
          $this->assign("homeworkresult_list_one",$homeworkresult_list_one);
+         $this->assign('page',input('page'));
+         $this->assign("bj_id",input('bj_id'));
          return $this->fetch();
     }
      // 题目更改操作
      public function update()
     { 
        model('Homeworkresult')->updatehomeworkresult();
-       $this->success('更新成功','index');
+       $this->success('更新成功',url('index',['bj_id'=>input('bj_id')]).'?page='.input('page'));
     }
-    // 题目删除操作
+    // 题目删除操作 
      public function del()
     {
        //$id=input('id');

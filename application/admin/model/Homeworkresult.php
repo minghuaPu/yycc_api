@@ -23,7 +23,6 @@ class Homeworkresult extends \think\Model{
        		db('homework_result')->where('id='.input('id'))->update([
 			'u_id'=>input('u_id'),
 			'hw_id'=>input('hw_id'),
-			'time'=>input('time'),
 			'reply'=>input('reply'),
 			'result'=>input('result'),
 			'progress'=>input('progress'),
@@ -31,7 +30,7 @@ class Homeworkresult extends \think\Model{
 			'correct'=>input('correct'),
 			's_homework'=>input('s_homework')
 			]);
-
+ 
     }
 
     public function detailhomeworkresult()
@@ -48,6 +47,7 @@ class Homeworkresult extends \think\Model{
             $banji=input('bj_id');
             $pageParam = ['query'=>[]];
             $pageParam['query']['bj_id']=$banji;
+            if(input('page')){$pageParam['query']['page']=input('page');}
            // $homework_result_list = db('homework_result')->where('u_id','in', $uid)->order('id desc')->paginate(20);
             $homework_result_list = db('homework_result')
 					->alias('v')
@@ -55,7 +55,7 @@ class Homeworkresult extends \think\Model{
 					->field('v.*')
 					->order('v.id desc')
 					->where("vc.banji=$banji")
-					->paginate(2,false,$pageParam);
+					->paginate(10,false,$pageParam);
         }//无条件查询
         else{
     	    $homework_result_list= db('homework_result')
