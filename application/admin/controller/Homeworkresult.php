@@ -7,11 +7,11 @@ class homeworkresult extends \app\admin\controller\Auth
 	// // 题目列表
 	  public function index()
      {   //班级信息
-  
+   
         $all=model('Homeworkresult')->getHomeworkResult();
-       
         $this->assign("hao",$all['hao']);  
-       $this->assign("homework_result_list",$all['hrl']);
+        $this->assign("homework_result_list",$all['hrl']);
+        $this->assign("page",input('page'));
         $this->assign("bj",$all['bj']);
         $this->assign('bj_id', input('bj_id'));
         return $this->fetch();
@@ -31,19 +31,26 @@ class homeworkresult extends \app\admin\controller\Auth
     // 进入题目更改
      public function edit()
     {
-        $id=input('id');
+         $id=input('id');
+        // print_r(input('bj_id'));exit();
          $homeworkresult_list_one=db('homework_result')->where("id=$id")->find();
-         $homeworkresult_list_one['result']=implode(',', unserialize($homeworkresult_list_one['result']));
+         if(is_array($homeworkresult_list_one['result'])){
+             $homeworkresult_list_one['result']=implode(',', unserialize($homeworkresult_list_one['result']));
+         }else{
+            $homeworkresult_list_one['result']=$homeworkresult_list_one['result'];
+         }
          $this->assign("homeworkresult_list_one",$homeworkresult_list_one);
+         $this->assign('page',input('page'));
+         $this->assign("bj_id",input('bj_id'));
          return $this->fetch();
     }
      // 题目更改操作
      public function update()
     { 
        model('Homeworkresult')->updatehomeworkresult();
-       $this->success('更新成功','index');
+       $this->success('更新成功',url('index',['bj_id'=>input('bj_id')]).'?page='.input('page'));
     }
-    // 题目删除操作
+    // 题目删除操作 
      public function del()
     {
        //$id=input('id');
