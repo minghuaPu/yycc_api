@@ -85,15 +85,9 @@ table td{
     opacity: 0;
     top:0;
 }
-
-.search_form {
-    display: inline-block;
-    float: right;
-}
-
-.add_form {
-     width: 50%;
-	 margin: 0 auto;
+.answer img{
+    width:100px;
+    height: 100px;
 }
 
 </style>
@@ -123,10 +117,10 @@ table td{
                         <div class="top-menu">
                             <ul class="nav navbar-nav pull-right">
 
-                                                                <li class="dropdown dropdown-user">
-                                    <a href=" " class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <li class="dropdown dropdown-user">
+                                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                         <img alt="" class="img-circle" src="__PUBLIC__/static/admin/avatar3_small.jpg">
-                                        <span class="username username-hide-on-mobile">管理员</span>
+                                        <span class="username username-hide-on-mobile">管理员:{$Think.session.login_name}</span>
                                     </a>
 
                                 </li>
@@ -160,8 +154,6 @@ table td{
                                         <span></span>
                                     </div>
                                 </li>
- 
- 
                                 <li class="nav-item <?php echo is_active('admin','active open');?>  <?php echo  is_active('admin','active open');?>  <?php echo  is_active('admingroup','active open');?>">
                                     <a href="{:url('admin/index')}" class="nav-link nav-toggle">
                                         <i class="icon-user"></i>
@@ -182,8 +174,7 @@ table td{
                                             </a>
                                         </li>                                                                             
                                     </ul>                
-                                </li>  
- 
+                                </li>                                
                                 <li class="nav-item <?php echo  is_active('user','active');?>
                                     ">
                                     <a href="{:url('user/index')}" class="nav-link nav-toggle"> <i class="icon-user"></i>
@@ -275,26 +266,31 @@ table td{
                                         </li>                                                                               
                                     </ul>                
                                 </li>
-                                <!-- 基地报名管理 -->
-                                <li class="nav-item <?php echo is_active('userjidi','active open');?>  <?php echo  is_active('special','active open');?>">
-                                    <a href="{:url('userjidi/index')}" class="nav-link nav-toggle">
+                                <li class="nav-item <?php echo is_active('shoppingmall','active open');?>  <?php echo  is_active('special','active open');?>">
+                                    <a href="{:url('shoppingmall/index')}" class="nav-link nav-toggle">
                                         <i class="icon-disc"></i>
                                         <span class="title">基地报名管理</span>
                                         <span class="arrow"></span>
                                     </a>
                                     <ul class="sub-menu" >
                                         <li class="nav-item start ">
-                                            <a href="{:url('userjidi/index')}" class="nav-link ">
+                                            <a href="{:url('shoppingmall/index')}" class="nav-link ">
                                                 <i class="icon-bar-chart"></i>
-                                                <span class="title">报名管理</span>
+                                                <span class="title">作业题目管理</span>
                                             </a>
                                         </li>
                                         <li class="nav-item start ">
-                                            <a href="{:url('userjidi/ordermanager')}" class="nav-link ">
+                                            <a href="{:url('shoppingmall/index')}" class="nav-link ">
                                                 <i class="icon-bar-chart"></i>
-                                                <span class="title">订单管理</span>
+                                                <span class="title">作业任务管理</span>
                                             </a>
-                                        </li>                                                                              
+                                        </li>
+                                        <li class="nav-item start ">
+                                            <a href="{:url('shoppingmall/index')}" class="nav-link ">
+                                                <i class="icon-bar-chart"></i>
+                                                <span class="title">提交作业管理</span>
+                                            </a>
+                                        </li>                                                                               
                                     </ul>                
                                 </li>
                                 <li class="nav-item <?php echo  is_active('listen','active');?>

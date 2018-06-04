@@ -60,7 +60,8 @@ class homeworkresult extends \app\admin\controller\Auth
     }
      public function detail()
     {
-         $homeworkresult_list_one=model('Homeworkresult')->detailhomeworkresult();
+
+        $homeworkresult_list_one=model('Homeworkresult')->detailhomeworkresult();
         $homeworkresult_list_one['result']=implode(',', unserialize($homeworkresult_list_one['result']));
        
         if ($homeworkresult_list_one['s_homework']) {
@@ -68,7 +69,8 @@ class homeworkresult extends \app\admin\controller\Auth
         }
          $username=db('user')->where("id=".$homeworkresult_list_one['u_id'])->field('user_name')->select();
          $title=db('homework_rel')->where("id=".$homeworkresult_list_one['hw_id'])->field('tc_title')->select();
-         
+         $this->assign("bj_id",input('bj_id'));
+         $this->assign("page",input('page'));
          $this->assign("username",$username);
          $this->assign("title",$title);
          $this->assign("homeworkresult_list_one",$homeworkresult_list_one);
