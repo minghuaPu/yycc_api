@@ -19,8 +19,8 @@
         <div class="form-group">
         
             <label >性别</label>
-            <input type="radio"  name="sex" value="男">男
-            <input type="radio"  name="sex" value="女">女
+           <label > <input type="radio"  name="sex" value="男">男 </label>  &nbsp;&nbsp;&nbsp;
+           <label > <input type="radio"  name="sex" value="女">女</label>
         </div> 
         <div class="form-group">
             <label >邮箱</label>
@@ -29,7 +29,7 @@
         <div class="form-group">
             <label >权限:</label>
             {foreach $quan as $key=>$value}
-            <input type="radio"  name="group_id" value="{$value['id']}">{$value['group_name']}
+           <label > <input type="radio"  name="group_id" value="{$value['id']}">{$value['group_name']} </label>  &nbsp;&nbsp;
             {/foreach}
         </div> 
 <!--         <div class="form-group">

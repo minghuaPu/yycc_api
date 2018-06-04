@@ -29,7 +29,7 @@
         <div class="form-group">
             <label >权限</label>
             {foreach $quan as $value}
-            <input type="radio"  name="group_id" value="{$value['id']}" {if $a_one.group_id==$value['id']} checked="checked"{/if}>{$value['group_name']}
+            <label ><input type="radio"  name="group_id" value="{$value['id']}" {if $a_one.group_id==$value['id']} checked="checked"{/if}>{$value['group_name']} </label> &nbsp;&nbsp;&nbsp;
             {/foreach}
         </div> 
         <input type="text" name="id" value="{$a_one.id}" style="display: none;">

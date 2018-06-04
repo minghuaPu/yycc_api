@@ -55,7 +55,7 @@ class Homeworkresult extends \think\Model{
 					->field('v.*')
 					->order('v.id desc')
 					->where("vc.banji=$banji")
-					->paginate(2,false,$pageParam);
+					->paginate(10,false,$pageParam);
         }//无条件查询
         else{
     	    $homework_result_list= db('homework_result')
