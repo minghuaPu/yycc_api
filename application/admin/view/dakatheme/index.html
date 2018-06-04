@@ -1,7 +1,8 @@
 {include file="public/header"} 
 
 <div class="mt-3">
-	<a href="{:url('add')}" class="btn btn-info">添加打卡主题</a>
+    <a href="{:url('add')}" class="btn btn-info">添加打卡主题</a>
+	<a href="{:url('ualltime')}" class="btn btn-success">批量增加7天时间</a>
     <table class="table">
         <tr>
             <th>编号</th>
@@ -16,12 +17,12 @@
             <td>{$value['id']}</td>
             <td title="{$value['theme']}">{$value['theme']}</td>
             <td title="{$value['xiangqin']}">{$value['xiangqin']}</td>
-            <td>
-                <span title="{$value['starTime']}">
+            <td title=" <?php echo date('Y/m/d h:s',$value['starTime']) ?> 至  <?php echo date('Y/m/d h:s',$value['endTime']) ?>">
+                <span >
                     <?php echo date('Y/m/d h:s',$value['starTime']) ?>
                 </span>至
-                <span title="{$value['endTime']}">
-                    <?php echo date('Y/m/d h:s',$value['starTime']) ?>
+                <span >
+                    <?php echo date('Y/m/d h:s',$value['endTime']) ?>
                 </span>
             </td>
             <td>

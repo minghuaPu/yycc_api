@@ -21,6 +21,12 @@ class Dakatheme extends \app\admin\controller\Auth
         
     }
 
+    public function ualltime()
+    {
+        db('daka_theme')->query("update fd_daka_theme set starTime=UNIX_TIMESTAMP(timestampadd(day, 7, from_unixtime(starTime))) ,endTime=UNIX_TIMESTAMP(timestampadd(day, 7, from_unixtime(endTime)))  where 1=1
+");
+        $this->success('批量增加时间成功');
+    }
     public function edit()
     {
         $dakaTheme= db('daka_theme')->find(input('id'));
