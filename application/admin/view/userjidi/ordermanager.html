@@ -6,7 +6,7 @@
 		<select class="btn btn-control" name="order_type">
 			<option value="">订单类型</option>
 			{foreach $orders_type as $key=>$val}
-			<option value="{$key}">{$val}</option>
+			<option {if $order_type == $key} selected="selected" {/if} value="{$key}">{$val}</option> 
 			{/foreach}
 		</select>
 		<button type="submit" class="btn btn-primary">搜索</button>
